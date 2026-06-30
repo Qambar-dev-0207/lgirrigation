@@ -187,7 +187,7 @@ export default function FastFusionSimulator() {
                 <path d="M 208 20 L 380 20 L 380 100 L 208 100 Z" fill="var(--ink-black)" opacity="0.9" />
                 
                 {/* Center Fusion Zone */}
-                <rect x="192" y="16" width="16" height="88" rx="4" fill="var(--soft-bone)" stroke="var(--ink-black)" strokeWidth="1" />
+                <rect x="192" y="16" width="16" height="88" rx="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
                 
                 {/* Weld Bead overlay while welding */}
                 {simulating && (
