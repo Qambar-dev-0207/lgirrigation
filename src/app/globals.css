@@ -3417,8 +3417,18 @@ tr:nth-child(even) td {
 
 /* Media Query Overrides (Mobile Breakpoint) */
 @media (max-width: 767px) {
-  .nav-actions .btn {
-    display: none;
+  .nav-actions .btn-primary {
+    display: none !important;
+  }
+
+  .nav-pill {
+    padding: 8px 16px !important;
+    width: calc(100% - 24px) !important;
+    max-width: 420px !important;
+  }
+
+  .hamburger {
+    padding: 4px !important;
   }
 
   .project-stats-preview {
