@@ -64,6 +64,7 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 body {
@@ -1984,7 +1985,16 @@ tr:nth-child(even) td {
   }
 
   .hero-stadium-frame {
+    width: calc(100% - 16px) !important;
     height: 460px;
+  }
+
+  .hero-cert-strip {
+    width: calc(100% - 16px) !important;
+    justify-content: center;
+    padding: var(--space-3) 0 var(--space-4);
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .hero-headline {
@@ -2012,11 +2022,6 @@ tr:nth-child(even) td {
     font-size: 0.8125rem;
     justify-content: center;
     flex: 1;
-  }
-
-  .hero-cert-strip {
-    justify-content: center;
-    padding: var(--space-3) 0 var(--space-4);
   }
 
   .cert-chip {
@@ -3424,11 +3429,30 @@ tr:nth-child(even) td {
   .nav-pill {
     padding: 8px 16px !important;
     width: calc(100% - 24px) !important;
-    max-width: 420px !important;
+    max-width: none !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+  }
+
+  .nav-actions {
+    gap: 0 !important;
   }
 
   .hamburger {
-    padding: 4px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 6px !important;
+    margin-left: 4px;
+  }
+
+  .hamburger span {
+    display: block !important;
+    width: 22px;
+    height: 2px;
+    margin: 0 !important;
   }
 
   .project-stats-preview {
