@@ -1254,6 +1254,10 @@ tr:nth-child(even) td {
 
 /* Mobile (<= 767px) */
 @media (max-width: 767px) {
+  section {
+    padding: var(--space-4) 0;
+  }
+
   h1 {
     font-size: 2.25rem; /* ~36px */
   }
@@ -1955,6 +1959,10 @@ tr:nth-child(even) td {
    MOBILE HERO ADJUSTMENTS
    ========================================== */
 @media (max-width: 1023px) {
+  .hero-cinematic {
+    padding-bottom: 0 !important;
+  }
+
   .hero-stadium-frame {
     width: calc(100% - 32px);
     height: clamp(320px, 60vw, 500px);
@@ -1972,6 +1980,7 @@ tr:nth-child(even) td {
 @media (max-width: 767px) {
   .hero-cinematic {
     padding-top: calc(72px + var(--space-3));
+    padding-bottom: 0 !important;
   }
 
   .hero-stadium-frame {
