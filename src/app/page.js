@@ -1,7 +1,12 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import MarqueeStrip from "@/components/MarqueeStrip";
 import StatCounter from "@/components/StatCounter";
+import ApprovalsGrid from "@/components/ApprovalsGrid";
+import FastFusionSimulator from "@/components/FastFusionSimulator";
 
 const CERTS = [
   { label: "IS 4984 : 1995", std: "HDPE Pipes" },
@@ -9,6 +14,105 @@ const CERTS = [
   { label: "IS 14151 PT-2", std: "Sprinkler" },
   { label: "ISO 9001:2015", std: "Quality" },
 ];
+
+function TypewriterTitle() {
+  const fullText = "Pipes Engineered For Water Infrastructure.";
+  const [text, setText] = useState("");
+  const [complete, setComplete] = useState(false);
+  const [started, setStarted] = useState(() => {
+    if (typeof window !== "undefined" && window.loaderFinished) {
+      return true;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (started) return;
+
+    const handleFinished = () => {
+      setStarted(true);
+    };
+
+    window.addEventListener("loaderFinished", handleFinished);
+    
+    const fallbackTimer = setTimeout(() => {
+      setStarted(true);
+    }, 3500);
+
+    return () => {
+      window.removeEventListener("loaderFinished", handleFinished);
+      clearTimeout(fallbackTimer);
+    };
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) return;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setText(fullText.substring(0, index + 1));
+      index++;
+      if (index >= fullText.length) {
+        clearInterval(interval);
+        setComplete(true);
+      }
+    }, 55);
+
+    return () => clearInterval(interval);
+  }, [started]);
+
+  const renderTypedTitle = (txt) => {
+    const breakIndex = 17; // End of "Pipes Engineered "
+    const highlight = "Water";
+
+    if (txt.length <= breakIndex) {
+      return <span>{txt}</span>;
+    }
+
+    const firstLine = txt.substring(0, breakIndex);
+    const secondLinePart = txt.substring(breakIndex);
+    const line2HighlightStart = 4; 
+    const line2HighlightEnd = 9;
+
+    if (secondLinePart.length <= line2HighlightStart) {
+      return (
+        <span>
+          {firstLine}
+          <br />
+          {secondLinePart}
+        </span>
+      );
+    } else if (secondLinePart.length <= line2HighlightEnd) {
+      const typedHighlight = secondLinePart.substring(line2HighlightStart);
+      return (
+        <span>
+          {firstLine}
+          <br />
+          {secondLinePart.substring(0, line2HighlightStart)}
+          <span className="hero-headline-outline">{typedHighlight}</span>
+        </span>
+      );
+    } else {
+      const typedRest = secondLinePart.substring(line2HighlightEnd);
+      return (
+        <span>
+          {firstLine}
+          <br />
+          {secondLinePart.substring(0, line2HighlightStart)}
+          <span className="hero-headline-outline">{highlight}</span>
+          {typedRest}
+        </span>
+      );
+    }
+  };
+
+  return (
+    <h1 className="hero-minimalist-headline" style={{ display: "inline-block" }}>
+      {renderTypedTitle(text)}
+      <span className={`typewriter-caret ${complete ? "finished" : ""}`} />
+    </h1>
+  );
+}
 
 export default function Home() {
   return (
@@ -163,6 +267,22 @@ export default function Home() {
       </section>
 
       {/* ============================================================
+          GOVERNMENT & CORPORATE CREDENTIALS (logo grid)
+          ============================================================ */}
+      <section className="bg-raised">
+        <div className="ghost-watermark watermark-left" style={{ top: "35%", fontSize: "clamp(3rem, 10vw, 8rem)" }}>CREDENTIALS</div>
+        <div className="container" style={{ position: "relative", zIndex: 2 }}>
+          <div style={{ maxWidth: "600px", marginBottom: "var(--space-6)" }}>
+            <span className="eyebrow">APPROVED INFRASTRUCTURE SUPPLIER</span>
+            <h2>Authorized Credential Profiles</h2>
+            <p>L G Irrigation holds formal licenses and approvals with central utility bodies, state-wide drinking water missions, and national infrastructure contractors.</p>
+          </div>
+
+          <ApprovalsGrid />
+        </div>
+      </section>
+
+      {/* ============================================================
           PRODUCTS ORBIT SECTION
           ============================================================ */}
       <section style={{ overflow: "hidden" }}>
@@ -185,10 +305,10 @@ export default function Home() {
               </svg>
             </div>
 
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "40px", flexWrap: "wrap" }}>
-
-              <AnimateOnScroll className="reveal" style={{ flex: 1, minWidth: "250px" }}>
-                <div className="portrait-card" style={{ marginTop: 0 }}>
+            <div className="staggered-wrapper">
+              
+              <AnimateOnScroll className="reveal staggered-col">
+                <div className="portrait-card">
                   <div className="portrait-circle-wrapper">
                     <div className="portrait-circle">
                       <img src="/assets/sewerage_pipes.png" alt="LGI Sewerage Pipes" loading="lazy" />
@@ -203,8 +323,8 @@ export default function Home() {
                 </div>
               </AnimateOnScroll>
 
-              <AnimateOnScroll className="reveal reveal-delay-2" style={{ flex: 1, minWidth: "250px" }}>
-                <div className="portrait-card" style={{ marginTop: "60px" }}>
+              <AnimateOnScroll className="reveal reveal-delay-2 staggered-col">
+                <div className="portrait-card">
                   <div className="portrait-circle-wrapper">
                     <div className="portrait-circle">
                       <img src="/assets/hdpe_pipes.png" alt="LGI HDPE Pipes and Coils" loading="lazy" />
@@ -219,8 +339,8 @@ export default function Home() {
                 </div>
               </AnimateOnScroll>
 
-              <AnimateOnScroll className="reveal reveal-delay-3" style={{ flex: 1, minWidth: "250px" }}>
-                <div className="portrait-card" style={{ marginTop: "120px" }}>
+              <AnimateOnScroll className="reveal reveal-delay-3 staggered-col">
+                <div className="portrait-card">
                   <div className="portrait-circle-wrapper">
                     <div className="portrait-circle">
                       <img src="/assets/sprinkler_system.png" alt="LGI Sprinkler System" loading="lazy" />
@@ -241,12 +361,11 @@ export default function Home() {
       </section>
 
       {/* ============================================================
-          FAST FUSION SECTION
+          FAST FUSION TECHNOLOGY & SIMULATOR
           ============================================================ */}
-      <section className="bg-raised">
+      <section>
         <div className="container">
-          <div className="grid-2" style={{ alignItems: "center", gap: "var(--space-8)" }}>
-
+          <div className="grid-2" style={{ alignItems: "center", gap: "var(--space-8)", marginBottom: "var(--space-8)" }}>
             <AnimateOnScroll className="reveal reveal-left">
               <div className="parallax-img-wrapper" style={{ height: "380px" }}>
                 <img
@@ -264,12 +383,12 @@ export default function Home() {
               <h2>Fast Fusion. Pipelines welded at record speed.</h2>
               <p>A major advancement in polyethylene pipe assembly. L G Irrigation leverages Fast Fusion technology with an enhanced cooling system, dramatically increasing weld production capacity per hour over industry standards.</p>
               <p style={{ color: "var(--slate-gray)" }}>Faster turnaround on large municipal projects without compromising joint integrity or pressure ratings.</p>
-              <Link href="/contact#fast-fusion" className="btn btn-primary" style={{ marginTop: "var(--space-3)" }}>
-                Enquire About Fast Fusion
-              </Link>
             </AnimateOnScroll>
-
           </div>
+
+          <AnimateOnScroll className="reveal">
+            <FastFusionSimulator />
+          </AnimateOnScroll>
         </div>
       </section>
 

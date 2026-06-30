@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import TiltWrapper from "@/components/TiltWrapper";
 
 export default function About() {
   const [expandedNode, setExpandedNode] = useState(null);
@@ -72,11 +73,11 @@ export default function About() {
               </div>
             </AnimateOnScroll>
             <AnimateOnScroll className="reveal reveal-right" style={{ display: "flex", justifyContent: "center" }}>
-              <div className="portrait-circle-wrapper" style={{ width: "320px", height: "320px", marginBottom: 0 }}>
+              <TiltWrapper className="portrait-circle-wrapper" style={{ width: "320px", height: "320px", marginBottom: 0 }}>
                 <div className="portrait-circle">
                   <img src="/assets/office_reception.png" alt="LGI Corporate Reception Glass Door" />
                 </div>
-              </div>
+              </TiltWrapper>
             </AnimateOnScroll>
           </div>
         </div>
@@ -115,14 +116,14 @@ export default function About() {
             </div>
 
             {/* Value 4 */}
-            <div className="value-card" style={{ gridColumn: "span 1" }}>
+            <div className="value-card">
               <div className="value-num">04</div>
               <h3>Ethical Conduct</h3>
               <p style={{ fontSize: "0.9375rem", marginBottom: 0 }}>Maintaining the highest standards of ethics, business conduct, and operating strictly within state and central laws.</p>
             </div>
 
             {/* Value 5 */}
-            <div className="value-card" style={{ gridColumn: "span 2" }}>
+            <div className="value-card value-card-wide">
               <div className="value-num">05</div>
               <h3>Agility & Growth</h3>
               <p style={{ fontSize: "0.9375rem", marginBottom: 0 }}>Identifying and responding aggressively to new infrastructural opportunities, committing our full engineering focus to succeed in each undertaking.</p>
@@ -144,7 +145,7 @@ export default function About() {
             
             {/* Top Level Node */}
             <div style={{ textAlign: "center", marginBottom: "var(--space-4)" }}>
-              <div style={{ display: "inline-block", backgroundColor: "var(--ink-black)", color: "var(--canvas-cream)", padding: "var(--space-2) var(--space-4)", borderRadius: "var(--radius-btn)", boxShadow: "var(--shadow-level-2)" }}>
+              <div style={{ display: "inline-block", backgroundColor: "var(--ink-black)", color: "var(--canvas-cream)", padding: "var(--space-2) var(--space-4)", borderRadius: "var(--radius-btn)", boxShadow: "var(--shadow-level-2)", cursor: "pointer" }}>
                 <h3 style={{ color: "var(--canvas-cream)", marginBottom: 0, fontSize: "1.125rem" }}>MANAGING PARTNER</h3>
                 <span style={{ fontSize: "0.75rem", color: "var(--slate-gray)", textTransform: "uppercase", fontWeight: 700, letterSpacing: "0.05em" }}>Executive Leadership</span>
               </div>

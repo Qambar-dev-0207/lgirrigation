@@ -9,7 +9,13 @@ export default function Loader() {
     // Start hiding after 2s
     const hideTimer = setTimeout(() => setPhase("hiding"), 2000);
     // Remove from DOM after curtain animation completes
-    const removeTimer = setTimeout(() => setPhase("hidden"), 3100);
+    const removeTimer = setTimeout(() => {
+      setPhase("hidden");
+      if (typeof window !== "undefined") {
+        window.loaderFinished = true;
+        window.dispatchEvent(new Event("loaderFinished"));
+      }
+    }, 3100);
     return () => {
       clearTimeout(hideTimer);
       clearTimeout(removeTimer);

@@ -43,14 +43,23 @@ export default function Gallery() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    if (lightboxImage) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [lightboxImage]);
+
   const openLightbox = (item) => {
     setLightboxImage(item);
-    document.body.style.overflow = "hidden";
   };
 
   const closeLightbox = () => {
     setLightboxImage(null);
-    document.body.style.overflow = "";
   };
 
   return (
@@ -66,19 +75,14 @@ export default function Gallery() {
           </div>
 
           {/* Masonry-style staggered grid */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: "var(--space-4)",
-            marginTop: "var(--space-6)",
-          }}>
+          <div className="gallery-grid">
             {galleryItems.map((item, index) => (
               <div
                 key={index}
-                className="gallery-item"
+                className="gallery-item gallery-card"
                 onClick={() => openLightbox(item)}
                 style={{
-                  height: index % 3 === 0 ? "420px" : index % 3 === 1 ? "300px" : "360px",
+                  "--staggered-height": index % 3 === 0 ? "420px" : index % 3 === 1 ? "300px" : "360px",
                   animationDelay: `${index * 0.1}s`,
                   cursor: "pointer",
                 }}
