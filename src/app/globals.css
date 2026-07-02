@@ -1838,6 +1838,66 @@ tr:nth-child(even) td {
   transform: translateY(-1px);
 }
 
+/* ==========================================
+   MINIMALIST HERO / PREVIEW SECTION
+   ========================================== */
+.hero-minimalist {
+  background-color: var(--canvas-cream);
+  overflow: hidden;
+}
+
+.hero-minimalist-headline {
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink-black);
+}
+
+.typewriter-caret {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  background-color: var(--light-signal-orange);
+  margin-left: 6px;
+  vertical-align: middle;
+  animation: typewriter-blink 0.75s step-end infinite;
+}
+
+.typewriter-caret.finished {
+  display: none;
+}
+
+@keyframes typewriter-blink {
+  from, to { background-color: transparent }
+  50% { background-color: var(--light-signal-orange); }
+}
+
+.hero-minimalist-media-frame {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(243, 115, 56, 0.08) 0%, transparent 70%);
+}
+
+.hero-minimalist-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(20, 20, 19, 0.12));
+  animation: hero-minimalist-float 6s ease-in-out infinite;
+}
+
+@keyframes hero-minimalist-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+
 .cert-chip-dot {
   width: 5px;
   height: 5px;

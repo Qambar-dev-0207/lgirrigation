@@ -230,6 +230,47 @@ export default function Home() {
       </section>
 
       {/* ============================================================
+          RECREATED MINIMALIST HERO / BRAND PREVIEW
+          ============================================================ */}
+      <section className="hero-minimalist" style={{ padding: "var(--space-12) 0", position: "relative" }}>
+        <div className="ghost-watermark watermark-right" style={{ top: "15%" }}>INFRASTRUCTURE</div>
+        <div className="container">
+          <div className="grid-2" style={{ alignItems: "center", gap: "var(--space-8)" }}>
+            
+            <AnimateOnScroll className="reveal reveal-left">
+              <span className="eyebrow">Minimalist Preview</span>
+              <div style={{ minHeight: "160px", marginBottom: "var(--space-3)" }}>
+                <TypewriterTitle />
+              </div>
+              <p className="lead">
+                Setting the standard in high-density polyethylene pipeline networks. We engineer advanced fluid systems designed to endure harsh environmental demands and secure zero-leak water supply.
+              </p>
+              <div style={{ display: "flex", gap: "16px", marginTop: "var(--space-4)" }}>
+                <Link href="/products" className="btn btn-primary">
+                  View Product Specs
+                </Link>
+                <Link href="/quality" className="btn btn-secondary">
+                  Testing Procedures
+                </Link>
+              </div>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll className="reveal reveal-right" style={{ display: "flex", justifyContent: "center", position: "relative" }}>
+              <div className="hero-minimalist-media-frame">
+                <img
+                  src="/assets/ChatGPT_Image_Jun_28__2026__11_25_11_AM-removebg-preview.png"
+                  alt="LGI Engineered Pipe"
+                  className="hero-minimalist-img"
+                  loading="lazy"
+                />
+              </div>
+            </AnimateOnScroll>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
           MARQUEE STRIP
           ============================================================ */}
       <MarqueeStrip />
