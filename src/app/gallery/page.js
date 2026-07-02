@@ -1,134 +1,267 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
+
+const galleryItems = [
+  {
+    src: "/assets/factory_exterior.png",
+    alt: "L G Irrigation Factory Exterior & Garden Yard",
+    title: "Factory Exterior",
+    desc: "Manufacturing facility and garden yard located inside Mahindra World City (SEZ), Jaipur.",
+    tag: "FACILITY",
+  },
+  {
+    src: "/assets/office_reception.png",
+    alt: "L G Irrigation Office Lobby Reception Area",
+    title: "Corporate Reception",
+    desc: "Minimalist, professional administration and customer relations lobby.",
+    tag: "CORPORATE",
+  },
+  {
+    src: "/assets/quality_lab.png",
+    alt: "L G Irrigation Quality Control Lab",
+    title: "Quality Assurance Lab",
+    desc: "Ultra-modern in-house laboratory housing tensile testing and melt index machinery.",
+    tag: "R&D",
+  },
+  {
+    src: "/assets/hero_factory.png",
+    alt: "Finished HDPE Coils and Pipes Pipeline Site",
+    title: "Infrastructure Project Yard",
+    desc: "Large-diameter pipe storage and construction site preparation.",
+    tag: "PROJECT",
+  },
+];
 
 export default function Gallery() {
-  const [lightboxImage, setLightboxImage] = useState(null);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const trackRef = useRef(null);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
 
-  const galleryItems = [
-    {
-      src: "/assets/factory_exterior.png",
-      alt: "L G Irrigation Factory Exterior & Garden Yard",
-      title: "Factory Exterior",
-      desc: "Manufacturing facility and garden yard located inside Mahindra World City (SEZ), Jaipur.",
-    },
-    {
-      src: "/assets/office_reception.png",
-      alt: "L G Irrigation Office Lobby Reception Area",
-      title: "Corporate Reception",
-      desc: "Minimalist, professional administration and customer relations lobby.",
-    },
-    {
-      src: "/assets/quality_lab.png",
-      alt: "L G Irrigation Quality Control Lab",
-      title: "Quality Assurance Lab",
-      desc: "Ultra-modern in-house laboratory housing tensile testing and melt index machinery.",
-    },
-    {
-      src: "/assets/hero_factory.png",
-      alt: "Finished HDPE Coils and Pipes Pipeline Site",
-      title: "Infrastructure Project Yard",
-      desc: "Large-diameter pipe storage and construction site preparation.",
-    },
-  ];
-
-  // Close lightbox on Escape key
+  /* ─── Keyboard: close lightbox, cycle arrows ─── */
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        setLightboxImage(null);
-      }
+      if (lightboxIndex === null) return;
+      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "ArrowRight") setLightboxIndex((i) => (i + 1) % galleryItems.length);
+      if (e.key === "ArrowLeft") setLightboxIndex((i) => (i - 1 + galleryItems.length) % galleryItems.length);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxIndex]);
+
+  /* ─── Lock body scroll when lightbox open ─── */
+  useEffect(() => {
+    document.body.style.overflow = lightboxIndex !== null ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [lightboxIndex]);
+
+  /* ─── Snap scroll: update active dot indicator ─── */
+  const handleScroll = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const cardWidth = track.firstChild?.offsetWidth ?? 400;
+    const gap = 24;
+    const idx = Math.round(track.scrollLeft / (cardWidth + gap));
+    setActiveIndex(Math.min(idx, galleryItems.length - 1));
   }, []);
 
   useEffect(() => {
-    if (lightboxImage) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [lightboxImage]);
+    const track = trackRef.current;
+    if (!track) return;
+    track.addEventListener("scroll", handleScroll, { passive: true });
+    return () => track.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
-  const openLightbox = (item) => {
-    setLightboxImage(item);
+  /* ─── Arrow navigation ─── */
+  const scrollTo = (direction) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const cardWidth = track.firstChild?.offsetWidth ?? 400;
+    const gap = 24;
+    track.scrollBy({ left: direction * (cardWidth + gap), behavior: "smooth" });
   };
 
-  const closeLightbox = () => {
-    setLightboxImage(null);
+  /* ─── Mouse drag scroll ─── */
+  const onMouseDown = (e) => {
+    isDragging.current = true;
+    startX.current = e.pageX - trackRef.current.offsetLeft;
+    scrollLeft.current = trackRef.current.scrollLeft;
+    trackRef.current.style.cursor = "grabbing";
+  };
+  const onMouseMove = (e) => {
+    if (!isDragging.current) return;
+    e.preventDefault();
+    const x = e.pageX - trackRef.current.offsetLeft;
+    trackRef.current.scrollLeft = scrollLeft.current - (x - startX.current);
+  };
+  const onMouseUp = () => {
+    isDragging.current = false;
+    if (trackRef.current) trackRef.current.style.cursor = "grab";
   };
 
   return (
     <main style={{ marginTop: "100px" }}>
-      
-      {/* Gallery Header */}
-      <section>
+
+      {/* ── Page Header ── */}
+      <section style={{ paddingBottom: "var(--space-6)" }}>
         <div className="container">
-          <div style={{ maxWidth: "800px", marginBottom: "var(--space-6)" }}>
+          <div style={{ maxWidth: "760px" }}>
             <span className="eyebrow">Facility Gallery</span>
             <h1>Inside LGI. Our Infrastructure.</h1>
-            <p className="lead">Step inside L G Irrigation. Here is a view of our manufacturing sheds, finished goods warehouse yards, corporate lobbies, and specialized testing facilities. Click any image to open the fullscreen lightbox viewer.</p>
-          </div>
-
-          {/* Masonry-style staggered grid */}
-          <div className="gallery-grid">
-            {galleryItems.map((item, index) => (
-              <div
-                key={index}
-                className="gallery-item gallery-card"
-                onClick={() => openLightbox(item)}
-                style={{
-                  "--staggered-height": index % 3 === 0 ? "420px" : index % 3 === 1 ? "300px" : "360px",
-                  animationDelay: `${index * 0.1}s`,
-                  cursor: "pointer",
-                }}
-              >
-                <img src={item.src} alt={item.alt} loading="lazy" />
-                <div className="gallery-caption">
-                  <h3>{item.title}</h3>
-                  <p>{item.desc}</p>
-                </div>
-              </div>
-            ))}
+            <p className="lead">
+              Step inside L G Irrigation — a view of our manufacturing sheds, finished goods warehouse yards, corporate lobbies, and specialized testing facilities. Drag, scroll, or use the arrows to explore.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Interactive Lightbox Overlay */}
-      {lightboxImage && (
-        <div 
-          className="lightbox open" 
-          role="dialog" 
-          aria-modal="true" 
-          onClick={(e) => {
-            if (e.target.classList.contains("lightbox") || e.target.classList.contains("lightbox-content")) {
-              closeLightbox();
-            }
-          }}
+      {/* ── Horizontal Scroll Gallery ── */}
+      <section style={{ padding: 0, paddingBottom: "var(--space-12)", overflow: "hidden", paddingLeft: 50 }}>
+
+        {/* Track */}
+        <div
+          ref={trackRef}
+          className="gallery-h-track"
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+          onMouseUp={onMouseUp}
+          onMouseLeave={onMouseUp}
         >
-          <button 
-            className="lightbox-close" 
-            aria-label="Close image viewer"
-            onClick={closeLightbox}
-          >
-            <svg viewBox="0 0 24 24" width="32" height="32">
-              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/>
-            </svg>
-          </button>
-          <div className="lightbox-content">
-            <img 
-              src={lightboxImage.src} 
-              alt={lightboxImage.alt} 
-              style={{ maxHeight: "80vh", maxWidth: "100%", borderRadius: "20px" }}
-            />
+          {/* Leading spacer to align first card with page container left edge */}
+          <div className="gallery-h-spacer" aria-hidden="true" />
+
+          {galleryItems.map((item, index) => (
+            <div
+              key={index}
+              className="gallery-h-card"
+              onClick={() => setLightboxIndex(index)}
+              style={{ animationDelay: `${index * 0.08}s` }}
+            >
+              <div className="gallery-h-img-wrap">
+                <img src={item.src} alt={item.alt} loading="lazy" draggable={false} />
+                <div className="gallery-h-overlay">
+                  <span className="gallery-h-expand-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+                      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+              <div className="gallery-h-caption">
+                <span className="gallery-h-tag">{item.tag}</span>
+                <h3 className="gallery-h-title">{item.title}</h3>
+                <p className="gallery-h-desc">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+
+          {/* Trailing spacer */}
+          <div className="gallery-h-spacer" aria-hidden="true" />
+        </div>
+
+        {/* Controls row */}
+        <div className="gallery-h-controls container">
+          {/* Dot indicators */}
+          <div className="gallery-h-dots">
+            {galleryItems.map((_, i) => (
+              <button
+                key={i}
+                className={`gallery-h-dot ${i === activeIndex ? "active" : ""}`}
+                aria-label={`Go to image ${i + 1}`}
+                onClick={() => {
+                  const track = trackRef.current;
+                  if (!track) return;
+                  const cardWidth = track.firstChild?.nextSibling?.offsetWidth ?? 440;
+                  const gap = 24;
+                  track.scrollTo({ left: i * (cardWidth + gap), behavior: "smooth" });
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Arrow buttons */}
+          <div className="gallery-h-arrows">
+            <button
+              className="gallery-arrow-btn"
+              onClick={() => scrollTo(-1)}
+              aria-label="Previous image"
+            >
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M19 12H5M12 5l-7 7 7 7" />
+              </svg>
+            </button>
+            <button
+              className="gallery-arrow-btn"
+              onClick={() => scrollTo(1)}
+              aria-label="Next image"
+            >
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         </div>
-      )}
+      </section>
 
+      {/* ── Lightbox ── */}
+      {lightboxIndex !== null && (
+        <div
+          className="lightbox open"
+          role="dialog"
+          aria-modal="true"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setLightboxIndex(null);
+          }}
+        >
+          {/* Close */}
+          <button className="lightbox-close" aria-label="Close" onClick={() => setLightboxIndex(null)}>
+            <svg viewBox="0 0 24 24" width="28" height="28">
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor" />
+            </svg>
+          </button>
+
+          {/* Prev */}
+          <button
+            className="lightbox-nav lightbox-prev"
+            aria-label="Previous"
+            onClick={() => setLightboxIndex((i) => (i - 1 + galleryItems.length) % galleryItems.length)}
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          {/* Image */}
+          <div className="lightbox-content">
+            <img
+              src={galleryItems[lightboxIndex].src}
+              alt={galleryItems[lightboxIndex].alt}
+              style={{ maxHeight: "80vh", maxWidth: "100%", borderRadius: "20px", display: "block" }}
+            />
+            <div className="lightbox-caption">
+              <span className="gallery-h-tag">{galleryItems[lightboxIndex].tag}</span>
+              <p style={{ marginBottom: 0, marginTop: "8px", color: "rgba(255,255,255,0.85)", fontSize: "1rem" }}>
+                {galleryItems[lightboxIndex].title} — {galleryItems[lightboxIndex].desc}
+              </p>
+            </div>
+          </div>
+
+          {/* Next */}
+          <button
+            className="lightbox-nav lightbox-next"
+            aria-label="Next"
+            onClick={() => setLightboxIndex((i) => (i + 1) % galleryItems.length)}
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      )}
     </main>
   );
 }

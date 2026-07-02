@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import FastFusionSimulator from "@/components/FastFusionSimulator";
+
 
 const PRODUCTS_DATA = [
   {

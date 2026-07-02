@@ -3,6 +3,7 @@
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import TiltWrapper from "@/components/TiltWrapper";
 
+
 const TESTS = [
   {
     id: "dimensions",
@@ -127,26 +128,42 @@ export default function Quality() {
         </div>
       </section>
 
-      {/* Lab Testing Procedures Section (Editorial Cards Grid) */}
-      <section id="tests">
+      {/* Lab Testing Procedures — Bento Grid */}
+      <section id="tests" style={{ background: "var(--ink-black)", padding: "var(--space-12) 0" }}>
         <div className="container">
-          <div style={{ maxWidth: "600px", marginBottom: "var(--space-6)", textAlign: "center", marginLeft: "auto", marginRight: "auto" }}>
-            <span className="eyebrow">LABORATORY PROCEDURES</span>
-            <h2>Major Tests Performed</h2>
-            <p>We execute 8 primary tests inside our Quality Assurance Laboratory to certify that our pipe batches meet zero-defect conditions.</p>
+
+          {/* Section header */}
+          <div className="lab-bento-header">
+            <div>
+              <span className="eyebrow" style={{ color: "rgba(255,255,255,0.45)" }}>LABORATORY PROCEDURES</span>
+              <h2 style={{ color: "var(--white)", marginBottom: 0 }}>Major Tests Performed</h2>
+            </div>
+            <div className="lab-bento-count">
+              <span className="lab-bento-count-num">08</span>
+              <span className="lab-bento-count-label">Quality<br/>Checks</span>
+            </div>
           </div>
 
-          <div className="grid-3" style={{ gap: "var(--space-4)" }}>
-            {TESTS.map((test) => (
-              <TiltWrapper key={test.id} className="value-card" style={{ border: "1.5px solid var(--ink-black)", boxShadow: "4px 4px 0px var(--ink-black)", display: "flex", flexDirection: "column", gap: "12px", background: "var(--white)" }}>
-                <div style={{ fontSize: "2rem", lineHeight: 1 }}>{test.icon}</div>
-                <h3 style={{ fontSize: "1.125rem", fontWeight: 700, margin: 0 }}>{test.title}</h3>
-                <p style={{ fontSize: "0.875rem", color: "var(--charcoal)", margin: 0, lineHeight: 1.4 }}>{test.desc}</p>
-              </TiltWrapper>
+          {/* Bento grid */}
+          <div className="lab-bento-grid">
+            {TESTS.map((test, i) => (
+              <div
+                key={test.id}
+                className={`lab-bento-card ${i === 0 ? "lab-bento-card--featured" : ""} ${i % 3 === 1 ? "lab-bento-card--dark" : ""}`}
+              >
+                <span className="lab-bento-ghost">{String(i + 1).padStart(2, "0")}</span>
+                <div className="lab-bento-inner">
+                  <span className="lab-bento-icon">{test.icon}</span>
+                  <h3 className="lab-bento-title">{test.title}</h3>
+                  <p className="lab-bento-desc">{test.desc}</p>
+                </div>
+              </div>
             ))}
           </div>
+
         </div>
       </section>
+
 
       {/* Lab Quality Philosophy Section */}
       <section className="bg-soft" id="lab">

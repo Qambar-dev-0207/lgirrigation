@@ -76,6 +76,13 @@ export default function CursorGlow() {
           ringRef.current?.classList.remove("hovering-interactive");
           dotRef.current?.classList.remove("hovering-interactive");
         }
+
+        // White cursor when inside footer
+        const inFooter = !!target.closest("footer");
+        const action = inFooter ? "add" : "remove";
+        spotlightRef.current?.classList[action]("in-footer");
+        ringRef.current?.classList[action]("in-footer");
+        dotRef.current?.classList[action]("in-footer");
       }
     };
 

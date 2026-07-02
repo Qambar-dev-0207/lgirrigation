@@ -6,7 +6,7 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 import MarqueeStrip from "@/components/MarqueeStrip";
 import StatCounter from "@/components/StatCounter";
 import ApprovalsGrid from "@/components/ApprovalsGrid";
-import FastFusionSimulator from "@/components/FastFusionSimulator";
+
 
 const CERTS = [
   { label: "IS 4984 : 1995", std: "HDPE Pipes" },
@@ -386,9 +386,7 @@ export default function Home() {
             </AnimateOnScroll>
           </div>
 
-          <AnimateOnScroll className="reveal">
-            <FastFusionSimulator />
-          </AnimateOnScroll>
+
         </div>
       </section>
 
