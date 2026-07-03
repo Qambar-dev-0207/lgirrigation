@@ -34,24 +34,15 @@ export async function POST(req) {
 
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-
-    // Generate safe, clean filename
-    const originalName = file.name || "upload";
-    const fileExt = path.extname(originalName) || ".png";
-    const baseName = path.basename(originalName, fileExt).replace(/[^a-zA-Z0-9]/g, "_");
-    const filename = `${Date.now()}_${baseName}${fileExt}`;
-
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
     
-    // Ensure upload directory exists
-    await fs.mkdir(uploadDir, { recursive: true });
+    const mimeType = file.type || "image/png";
+    const base64String = buffer.toString("base64");
+    const dataUri = `data:${mimeType};base64,${base64String}`;
 
-    const filePath = path.join(uploadDir, filename);
-    await fs.writeFile(filePath, buffer);
-
-    // Return the relative URL of the uploaded image
-    return NextResponse.json({ url: `/uploads/${filename}` });
+    // Return the self-contained base64 data URI of the uploaded image
+    return NextResponse.json({ url: dataUri });
   } catch (error) {
-    return NextResponse.json({ error: "Failed to process and upload file" }, { status: 500 });
+    console.error("Upload error:", error);
+    return NextResponse.json({ error: "Failed to process image file" }, { status: 500 });
   }
 }

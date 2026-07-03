@@ -101,7 +101,7 @@ export async function POST(req) {
       eyebrow: eyebrow || "",
       shortDescription,
       longDescription: longDescription || shortDescription,
-      image: image || "/placeholder.png",
+      image: image || "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'><rect width='300' height='300' fill='%23F3F0EE'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14' fill='%23696969'>No Image Available</text></svg>",
       rangeSummary: rangeSummary || "",
       pressureSummary: pressureSummary || "",
       tags: Array.isArray(tags) ? tags : (tags ? tags.split(",").map(t => t.trim().toUpperCase()) : []),
