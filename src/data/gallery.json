@@ -1,19 +1,6 @@
 [
   {
-    "src": "/assets/quality_lab.png",
-    "alt": "L G Irrigation Quality Control Lab",
-    "title": "Quality Assurance Lab",
-    "desc": "Ultra-modern in-house laboratory housing tensile testing and melt index machinery.",
-    "tag": "R&D"
-  },
-  {
-    "src": "/assets/office_reception.png",
-    "alt": "L G Irrigation Office Lobby Reception Area",
-    "title": "Corporate Reception",
-    "desc": "Minimalist, professional administration and customer relations lobby.",
-    "tag": "CORPORATE"
-  },
-  {
+    "id": "factory-exterior",
     "src": "/assets/factory_exterior.png",
     "alt": "L G Irrigation Factory Exterior & Garden Yard",
     "title": "Factory Exterior",
@@ -21,6 +8,23 @@
     "tag": "FACILITY"
   },
   {
+    "id": "corporate-reception",
+    "src": "/assets/office_reception.png",
+    "alt": "L G Irrigation Office Lobby Reception Area",
+    "title": "Corporate Reception",
+    "desc": "Minimalist, professional administration and customer relations lobby.",
+    "tag": "CORPORATE"
+  },
+  {
+    "id": "quality-assurance-lab",
+    "src": "/assets/quality_lab.png",
+    "alt": "L G Irrigation Quality Control Lab",
+    "title": "Quality Assurance Lab",
+    "desc": "Ultra-modern in-house laboratory housing tensile testing and melt index machinery.",
+    "tag": "R&D"
+  },
+  {
+    "id": "infrastructure-project-yard",
     "src": "/assets/hero_factory.png",
     "alt": "Finished HDPE Coils and Pipes Pipeline Site",
     "title": "Infrastructure Project Yard",

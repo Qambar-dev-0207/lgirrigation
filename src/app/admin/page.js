@@ -380,11 +380,11 @@ export default function AdminPortal() {
     }
   };
 
-  const handleDeleteGalleryItem = async (src) => {
+  const handleDeleteGalleryItem = async (id) => {
     if (!confirm("Are you sure you want to remove this image from the gallery?")) return;
 
     try {
-      const res = await fetch(`/api/gallery?src=${encodeURIComponent(src)}`, {
+      const res = await fetch(`/api/gallery?id=${id}`, {
         method: "DELETE",
         headers: getHeaders(),
       });
@@ -1214,7 +1214,7 @@ export default function AdminPortal() {
                         </p>
                       </div>
                       <button
-                        onClick={() => handleDeleteGalleryItem(item.src)}
+                        onClick={() => handleDeleteGalleryItem(item.id)}
                         style={{
                           width: "100%",
                           border: "1px solid var(--signal-orange)",

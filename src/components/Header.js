@@ -47,11 +47,16 @@ export default function Header() {
       >
         {/* Logo */}
         <Link href="/" className="nav-logo-group" onClick={closeMobileMenu}>
-          <div className="logo-circle-container">
-            <div className="logo-circle logo-circle-red" />
-            <div className="logo-circle logo-circle-yellow" />
-          </div>
-          <span className="logo-text">L G Irrigation</span>
+          <img
+            src="/assets/lglogo.jpeg"
+            alt="L G Irrigation Logo"
+            style={{
+              height: "40px",
+              width: "auto",
+              objectFit: "contain",
+              display: "block",
+            }}
+          />
         </Link>
 
         {/* Desktop nav links */}

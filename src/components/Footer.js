@@ -34,11 +34,16 @@ export default function Footer() {
               We&apos;re always here<br />when you need water flowing.
             </h2>
             <div className="footer-logo-group">
-              <div className="logo-circle-container">
-                <div className="logo-circle logo-circle-red" style={{ width: "32px", height: "32px" }} />
-                <div className="logo-circle logo-circle-yellow" style={{ width: "32px", height: "32px", marginLeft: "-14px" }} />
-              </div>
-              <span className="footer-logo-text">L G IRRIGATION</span>
+              <img
+                src="/assets/lglogo.jpeg"
+                alt="L G Irrigation Logo"
+                style={{
+                  height: "45px",
+                  width: "auto",
+                  objectFit: "contain",
+                  display: "block",
+                }}
+              />
             </div>
           </div>
 

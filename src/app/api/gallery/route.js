@@ -29,6 +29,7 @@ async function seedGalleryIfNeeded(db) {
       const defaultItems = JSON.parse(fileData);
       
       const seededItems = defaultItems.map((item, idx) => ({
+        id: item.id || item.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") + "-" + Date.now() + "-" + idx,
         ...item,
         order: idx
       }));
@@ -76,7 +77,11 @@ export async function POST(req) {
     const lastItem = await db.collection("gallery").find().sort({ order: -1 }).limit(1).toArray();
     const nextOrder = lastItem.length > 0 ? (lastItem[0].order || 0) + 1 : 0;
 
+    // Generate safe unique ID
+    const id = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") + "-" + Date.now();
+
     const newItem = {
+      id,
       src,
       alt: alt || title,
       title,
@@ -102,14 +107,14 @@ export async function DELETE(req) {
 
   try {
     const { searchParams } = new URL(req.url);
-    const src = searchParams.get("src");
+    const id = searchParams.get("id");
 
-    if (!src) {
-      return NextResponse.json({ error: "Missing image source path" }, { status: 400 });
+    if (!id) {
+      return NextResponse.json({ error: "Missing gallery item ID" }, { status: 400 });
     }
 
     const db = await getDb();
-    const result = await db.collection("gallery").deleteOne({ src });
+    const result = await db.collection("gallery").deleteOne({ id });
 
     if (result.deletedCount === 0) {
       return NextResponse.json({ error: "Gallery item not found" }, { status: 404 });
@@ -138,7 +143,7 @@ export async function PUT(req) {
     // Prepare bulk write operations to update order indexes
     const bulkOps = body.map((item, index) => ({
       updateOne: {
-        filter: { src: item.src },
+        filter: { id: item.id },
         update: { $set: { order: index } }
       }
     }));
