@@ -2,38 +2,9 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 
-const galleryItems = [
-  {
-    src: "/assets/factory_exterior.png",
-    alt: "L G Irrigation Factory Exterior & Garden Yard",
-    title: "Factory Exterior",
-    desc: "Manufacturing facility and garden yard located inside Mahindra World City (SEZ), Jaipur.",
-    tag: "FACILITY",
-  },
-  {
-    src: "/assets/office_reception.png",
-    alt: "L G Irrigation Office Lobby Reception Area",
-    title: "Corporate Reception",
-    desc: "Minimalist, professional administration and customer relations lobby.",
-    tag: "CORPORATE",
-  },
-  {
-    src: "/assets/quality_lab.png",
-    alt: "L G Irrigation Quality Control Lab",
-    title: "Quality Assurance Lab",
-    desc: "Ultra-modern in-house laboratory housing tensile testing and melt index machinery.",
-    tag: "R&D",
-  },
-  {
-    src: "/assets/hero_factory.png",
-    alt: "Finished HDPE Coils and Pipes Pipeline Site",
-    title: "Infrastructure Project Yard",
-    desc: "Large-diameter pipe storage and construction site preparation.",
-    tag: "PROJECT",
-  },
-];
-
 export default function Gallery() {
+  const [galleryItems, setGalleryItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef(null);
@@ -41,17 +12,30 @@ export default function Gallery() {
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
+  useEffect(() => {
+    fetch("/api/gallery")
+      .then((res) => res.json())
+      .then((data) => {
+        setGalleryItems(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error loading gallery:", err);
+        setIsLoading(false);
+      });
+  }, []);
+
   /* ─── Keyboard: close lightbox, cycle arrows ─── */
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (lightboxIndex === null) return;
+      if (lightboxIndex === null || galleryItems.length === 0) return;
       if (e.key === "Escape") setLightboxIndex(null);
       if (e.key === "ArrowRight") setLightboxIndex((i) => (i + 1) % galleryItems.length);
       if (e.key === "ArrowLeft") setLightboxIndex((i) => (i - 1 + galleryItems.length) % galleryItems.length);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxIndex]);
+  }, [lightboxIndex, galleryItems]);
 
   /* ─── Lock body scroll when lightbox open ─── */
   useEffect(() => {
@@ -67,7 +51,7 @@ export default function Gallery() {
     const gap = 24;
     const idx = Math.round(track.scrollLeft / (cardWidth + gap));
     setActiveIndex(Math.min(idx, galleryItems.length - 1));
-  }, []);
+  }, [galleryItems]);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -80,27 +64,30 @@ export default function Gallery() {
   const scrollTo = (direction) => {
     const track = trackRef.current;
     if (!track) return;
-    const cardWidth = track.firstChild?.offsetWidth ?? 400;
+    const cardWidth = track.firstChild?.nextSibling?.offsetWidth ?? 400;
     const gap = 24;
     track.scrollBy({ left: direction * (cardWidth + gap), behavior: "smooth" });
   };
 
   /* ─── Mouse drag scroll ─── */
   const onMouseDown = (e) => {
+    if (!trackRef.current) return;
     isDragging.current = true;
     startX.current = e.pageX - trackRef.current.offsetLeft;
     scrollLeft.current = trackRef.current.scrollLeft;
     trackRef.current.style.cursor = "grabbing";
   };
   const onMouseMove = (e) => {
-    if (!isDragging.current) return;
+    if (!isDragging.current || !trackRef.current) return;
     e.preventDefault();
     const x = e.pageX - trackRef.current.offsetLeft;
     trackRef.current.scrollLeft = scrollLeft.current - (x - startX.current);
   };
   const onMouseUp = () => {
-    isDragging.current = false;
-    if (trackRef.current) trackRef.current.style.cursor = "grab";
+    if (trackRef.current) {
+      isDragging.current = false;
+      trackRef.current.style.cursor = "grab";
+    }
   };
 
   return (
@@ -121,26 +108,39 @@ export default function Gallery() {
 
       {/* ── Horizontal Scroll Gallery ── */}
       <section style={{ padding: 0, paddingBottom: "var(--space-12)", overflow: "hidden", paddingLeft: 50 }}>
-
-        {/* Track */}
-        <div
-          ref={trackRef}
-          className="gallery-h-track"
-          onMouseDown={onMouseDown}
-          onMouseMove={onMouseMove}
-          onMouseUp={onMouseUp}
-          onMouseLeave={onMouseUp}
-        >
-          {/* Leading spacer to align first card with page container left edge */}
-          <div className="gallery-h-spacer" aria-hidden="true" />
-
-          {galleryItems.map((item, index) => (
+        {isLoading ? (
+          <div style={{ textAlign: "center", padding: "var(--space-12) 0", color: "var(--slate-gray)", fontWeight: 500 }}>
+            <div style={{ display: "inline-block", width: "40px", height: "40px", border: "3px solid rgba(20,20,19,0.1)", borderTopColor: "var(--signal-orange)", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
+            <p style={{ marginTop: "16px" }}>Loading Gallery Images...</p>
+            <style dangerouslySetInnerHTML={{__html: `
+              @keyframes spin {
+                to { transform: rotate(360deg); }
+              }
+            `}} />
+          </div>
+        ) : galleryItems.length === 0 ? (
+          <p style={{ textAlign: "center", padding: "var(--space-12) 0", color: "var(--slate-gray)" }}>No gallery images available.</p>
+        ) : (
+          <>
+            {/* Track */}
             <div
-              key={index}
-              className="gallery-h-card"
-              onClick={() => setLightboxIndex(index)}
-              style={{ animationDelay: `${index * 0.08}s` }}
+              ref={trackRef}
+              className="gallery-h-track"
+              onMouseDown={onMouseDown}
+              onMouseMove={onMouseMove}
+              onMouseUp={onMouseUp}
+              onMouseLeave={onMouseUp}
             >
+              {/* Leading spacer to align first card with page container left edge */}
+              <div className="gallery-h-spacer" aria-hidden="true" />
+
+              {galleryItems.map((item, index) => (
+                <div
+                  key={index}
+                  className="gallery-h-card"
+                  onClick={() => setLightboxIndex(index)}
+                  style={{ animationDelay: `${index * 0.08}s` }}
+                >
               <div className="gallery-h-img-wrap">
                 <img src={item.src} alt={item.alt} loading="lazy" draggable={false} />
                 <div className="gallery-h-overlay">
@@ -205,6 +205,8 @@ export default function Gallery() {
             </button>
           </div>
         </div>
+          </>
+        )}
       </section>
 
       {/* ── Lightbox ── */}

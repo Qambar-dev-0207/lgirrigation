@@ -106,7 +106,8 @@ export default function Footer() {
 
             <div className="footer-bottom-links">
               <a href="#" style={{ marginRight: "16px" }}>Privacy Policy</a>
-              <a href="#">Terms &amp; Conditions</a>
+              <a href="#" style={{ marginRight: "16px" }}>Terms &amp; Conditions</a>
+              <Link href="/admin">Admin Portal</Link>
             </div>
 
             <select className="footer-lang-selector" aria-label="Select Language" defaultValue="English (IN)">

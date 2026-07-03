@@ -1,0 +1,30 @@
+[
+  {
+    "src": "/assets/quality_lab.png",
+    "alt": "L G Irrigation Quality Control Lab",
+    "title": "Quality Assurance Lab",
+    "desc": "Ultra-modern in-house laboratory housing tensile testing and melt index machinery.",
+    "tag": "R&D"
+  },
+  {
+    "src": "/assets/office_reception.png",
+    "alt": "L G Irrigation Office Lobby Reception Area",
+    "title": "Corporate Reception",
+    "desc": "Minimalist, professional administration and customer relations lobby.",
+    "tag": "CORPORATE"
+  },
+  {
+    "src": "/assets/factory_exterior.png",
+    "alt": "L G Irrigation Factory Exterior & Garden Yard",
+    "title": "Factory Exterior",
+    "desc": "Manufacturing facility and garden yard located inside Mahindra World City (SEZ), Jaipur.",
+    "tag": "FACILITY"
+  },
+  {
+    "src": "/assets/hero_factory.png",
+    "alt": "Finished HDPE Coils and Pipes Pipeline Site",
+    "title": "Infrastructure Project Yard",
+    "desc": "Large-diameter pipe storage and construction site preparation.",
+    "tag": "PROJECT"
+  }
+]
