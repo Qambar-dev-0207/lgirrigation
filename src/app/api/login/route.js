@@ -4,8 +4,13 @@ function verifyAuth(req) {
   const authHeader = req.headers.get("authorization");
   if (!authHeader) return false;
   
-  const adminEmail = process.env.ADMIN_EMAIL || "lgirrigationadmin@gmail.com";
-  const adminPassword = process.env.ADMIN_PASSWORD || "!LGadmin!!";
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  
+  if (!adminEmail || !adminPassword) {
+    console.error("ADMIN_EMAIL or ADMIN_PASSWORD is not set in environment!");
+    return false;
+  }
   
   const token = authHeader.replace("Basic ", "").trim();
   const expected = Buffer.from(`${adminEmail}:${adminPassword}`).toString("base64");
@@ -14,6 +19,14 @@ function verifyAuth(req) {
 
 export async function POST(req) {
   try {
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminPassword = process.env.ADMIN_PASSWORD;
+
+    if (!adminEmail || !adminPassword) {
+      console.error("ADMIN_EMAIL or ADMIN_PASSWORD is not set in environment!");
+      return NextResponse.json({ error: "Administration authentication is not configured on server" }, { status: 500 });
+    }
+
     // If authorization header is provided, verify it directly (auto-login check)
     const authHeader = req.headers.get("authorization");
     if (authHeader) {
@@ -27,9 +40,6 @@ export async function POST(req) {
     // Otherwise, perform email & password check
     const body = await req.json();
     const { email, password } = body;
-
-    const adminEmail = process.env.ADMIN_EMAIL || "lgirrigationadmin@gmail.com";
-    const adminPassword = process.env.ADMIN_PASSWORD || "!LGadmin!!";
 
     if (email === adminEmail && password === adminPassword) {
       const token = Buffer.from(`${email}:${password}`).toString("base64");

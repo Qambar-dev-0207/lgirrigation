@@ -7,8 +7,13 @@ function verifyAuth(req) {
   const authHeader = req.headers.get("authorization");
   if (!authHeader) return false;
   
-  const adminEmail = process.env.ADMIN_EMAIL || "lgirrigationadmin@gmail.com";
-  const adminPassword = process.env.ADMIN_PASSWORD || "!LGadmin!!";
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  
+  if (!adminEmail || !adminPassword) {
+    console.error("ADMIN_EMAIL or ADMIN_PASSWORD is not set in environment!");
+    return false;
+  }
   
   const token = authHeader.replace("Basic ", "").trim();
   const expected = Buffer.from(`${adminEmail}:${adminPassword}`).toString("base64");

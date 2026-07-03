@@ -478,7 +478,7 @@ export default function AdminPortal() {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="lgirrigationadmin@gmail.com"
+                  placeholder="admin@example.com"
                   required
                   style={{
                     width: "100%",
