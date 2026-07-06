@@ -165,23 +165,7 @@ export default function Gallery() {
 
         {/* Controls row */}
         <div className="gallery-h-controls container">
-          {/* Dot indicators */}
-          <div className="gallery-h-dots">
-            {galleryItems.map((_, i) => (
-              <button
-                key={i}
-                className={`gallery-h-dot ${i === activeIndex ? "active" : ""}`}
-                aria-label={`Go to image ${i + 1}`}
-                onClick={() => {
-                  const track = trackRef.current;
-                  if (!track) return;
-                  const cardWidth = track.firstChild?.nextSibling?.offsetWidth ?? 440;
-                  const gap = 24;
-                  track.scrollTo({ left: i * (cardWidth + gap), behavior: "smooth" });
-                }}
-              />
-            ))}
-          </div>
+
 
           {/* Arrow buttons */}
           <div className="gallery-h-arrows">

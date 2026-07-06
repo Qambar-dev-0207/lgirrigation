@@ -113,5 +113,128 @@
         ]
       ]
     }
+  },
+  {
+    "id": "drip",
+    "title": "Drip Irrigation Systems",
+    "standard": "IS 12786 : 1989",
+    "eyebrow": "PRECISION WATERING",
+    "shortDescription": "Flexible, UV-stabilized drip lateral lines designed for maximum water efficiency in farming and greenhouse plots.",
+    "longDescription": "Our premium Drip Irrigation system utilizes high-quality, UV-stabilized polyethylene lateral pipes designed for precise, low-volume watering. Conforms to IS 12786, ensuring high resistance to thermal cracking and agricultural chemicals.",
+    "image": "/assets/WhatsApp Image 2026-07-04 at 5.00.04 PM.jpeg",
+    "rangeSummary": "12mm – 32mm",
+    "pressureSummary": "Class 1 – Class 3",
+    "tags": [
+      "DRIP LATERALS",
+      "WATER SAVING",
+      "UV STABILIZED"
+    ],
+    "featuresTitle": "Applications & Features:",
+    "features": [
+      "Uniform Water Supply: Delivers water directly to the crop root zone, reducing wastage and evaporation.",
+      "High Stress-Crack Resistance: Conforms to IS 12786, ensuring longevity under high sunlight and field temperatures.",
+      "Compatible with Online/In-line Emitters: Supports standard drip emitters for horticulture and row-crop irrigation."
+    ],
+    "rangeDetails": "Available in sizes 12mm, 16mm, 20mm, 25mm, and 32mm. Manufactured in various thickness classes to suit different pressure ratings and field topographies.",
+    "specTable": {
+      "headers": [
+        "Standard License",
+        "Diameter Range",
+        "Pressure Class",
+        "Coil Lengths",
+        "Ideal Crops"
+      ],
+      "rows": [
+        [
+          "IS 12786 : 1989",
+          "12 mm to 32 mm",
+          "Class 1, Class 2, Class 3",
+          "100m, 200m, 300m",
+          "Vegetables, sugarcane, orchards, greenhouses"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "dwc",
+    "title": "DWC HDPE Sewerage Pipes",
+    "standard": "IS 16098 (Part 2) : 2013",
+    "eyebrow": "HEAVY DRAINAGE & SEWER",
+    "shortDescription": "Double-walled corrugated HDPE pipes combining high ring stiffness with smooth hydraulics for non-pressure sewerage.",
+    "longDescription": "Engineered specifically for heavy-duty gravity sewers, drainage networks, and subsoil highway drainage. Featuring a corrugated black outer wall for high ring stiffness and a smooth blue/green inner wall for maximum flow rates.",
+    "image": "/assets/WhatsApp Image 2026-07-04 at 5.00.01 PM.jpeg",
+    "rangeSummary": "75mm – 1000mm",
+    "pressureSummary": "SN 4 & SN 8 Stiffness",
+    "tags": [
+      "DOUBLE WALL",
+      "HIGH RING STIFFNESS",
+      "SEWERAGE NETWORKS"
+    ],
+    "featuresTitle": "Applications & Features:",
+    "features": [
+      "Corrugated Design: Minimizes pipe weight while achieving high load-bearing capacity (SN4 and SN8).",
+      "Smooth Inner Surface: Offers minimal friction, preventing clogging and ensuring high sewage flow velocity.",
+      "Watertight Joints: Easy installation using elastomeric sealing rings that prevent root penetration and groundwater leakages."
+    ],
+    "rangeDetails": "Diameters from 75mm to 1000mm. Supplied in standard straight lengths of 6 meters with integrated sockets for quick rubber-ring jointing.",
+    "specTable": {
+      "headers": [
+        "Standard License",
+        "Nominal Sizes (DN)",
+        "Stiffness Classes",
+        "Standard Length",
+        "Jointing System"
+      ],
+      "rows": [
+        [
+          "IS 16098 (Part 2) : 2013",
+          "75 mm to 1000 mm",
+          "SN 4 (4 kN/m²), SN 8 (8 kN/m²)",
+          "6 Meters",
+          "Rubber Ring / Spigot Jointing"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "plb-duct",
+    "title": "PLB HDPE Duct Pipes",
+    "standard": "IS 14930 (Part 2) / TEC GR",
+    "eyebrow": "TELECOM & FIBER PROTECTION",
+    "shortDescription": "Permanently lubricated HDPE conduits with a co-extruded low-friction inner layer for optical fiber cable laying.",
+    "longDescription": "Designed for trenchless or standard underground laying of telecommunication and optical fiber cables. Featuring a co-extruded solid-lubricant inner layer that reduces friction and allows for easy cable blowing over long distances.",
+    "image": "/assets/WhatsApp Image 2026-07-04 at 5.00.03 PM.jpeg",
+    "rangeSummary": "32mm – 50mm",
+    "pressureSummary": "High Crush Resistance",
+    "tags": [
+      "TELECOM DUCT",
+      "SOLID LUBRICATED",
+      "CRUSH RESISTANT"
+    ],
+    "featuresTitle": "Applications & Features:",
+    "features": [
+      "Permanently Lubricated Layer: Solid silicone inner lining co-extruded to reduce friction coefficient below 0.06.",
+      "Crush & Impact Proof: High physical strength to protect fragile fiber-optic cables from soil movements.",
+      "Trenchless Laying: Robust construction suitable for horizontal directional drilling (HDD) under roads/rivers."
+    ],
+    "rangeDetails": "Standard sizes include 32/26 mm, 40/33 mm, and 50/42 mm. Available in long continuous coils of 500m to 1000m with customized colors and stripe marking.",
+    "specTable": {
+      "headers": [
+        "Standard License",
+        "Duct Size (OD/ID)",
+        "Co-extruded Lining",
+        "Coil Lengths",
+        "Applications"
+      ],
+      "rows": [
+        [
+          "IS 14930 (Part 2) / TEC",
+          "32/26 mm, 40/33 mm, 50/42 mm",
+          "Solid Silicone Lubricant (Co-extruded)",
+          "500m to 1000m Coils",
+          "Optical Fiber Cables (OFC) laying, telecom lines"
+        ]
+      ]
+    }
   }
 ]

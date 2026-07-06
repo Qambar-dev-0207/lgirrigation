@@ -30,5 +30,173 @@
     "title": "Infrastructure Project Yard",
     "desc": "Large-diameter pipe storage and construction site preparation.",
     "tag": "PROJECT"
+  },
+  {
+    "id": "dwc-sewerage-pipe",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.01 PM.jpeg",
+    "alt": "Double Wall Corrugated DWC HDPE Pipe Section",
+    "title": "DWC HDPE Pipe Closeup",
+    "desc": "Double-wall corrugated HDPE pipe showing the outer corrugated structure and inner smooth blue lining.",
+    "tag": "PRODUCTS"
+  },
+  {
+    "id": "hdpe-water-pipe-blue-stripe",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.02 PM (1).jpeg",
+    "alt": "Co-extruded HDPE Drinking Water Pipes",
+    "title": "HDPE Water Supply Pipe",
+    "desc": "High-density polyethylene pipes co-extruded with blue stripes for drinking water transportation.",
+    "tag": "PRODUCTS"
+  },
+  {
+    "id": "hdpe-pipe-stockpile",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.02 PM.jpeg",
+    "alt": "Bulk Inventory of HDPE Piping in Yard",
+    "title": "Bulk HDPE Pipe Stockpile",
+    "desc": "Large stockpile of straight HDPE water lines waiting for dispatch in the warehouse yard.",
+    "tag": "INVENTORY"
+  },
+  {
+    "id": "hdpe-pipe-closeup",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.02 PM (2).jpeg",
+    "alt": "Precision Thick-Walled HDPE Pipe Mouth",
+    "title": "High-Density Pipe Section",
+    "desc": "Close-up view of industrial-grade HDPE piping showing precise wall thickness.",
+    "tag": "PRODUCTS"
+  },
+  {
+    "id": "industrial-roller-conveyor",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.03 PM (1).jpeg",
+    "alt": "Manufacturing HDPE pipe on extrusion conveyor line",
+    "title": "Large Pipe on Conveyor",
+    "desc": "Large-diameter black HDPE pipe being processed on the industrial roller conveyor line.",
+    "tag": "MANUFACTURING"
+  },
+  {
+    "id": "conduit-pipes-stack",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.03 PM.jpeg",
+    "alt": "Conduit and PLB optical fiber ducts",
+    "title": "Conduit & PLB Ducts Stack",
+    "desc": "Stacked plain black HDPE conduit pipes for electrical and telecommunication wiring protection.",
+    "tag": "INVENTORY"
+  },
+  {
+    "id": "hdpe-fitting-joint",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.04 PM (1).jpeg",
+    "alt": "Fused socket fittings and couplers",
+    "title": "Joint Fittings & Couplers",
+    "desc": "Assorted sizes of black HDPE pipes showcasing a socket fusion joint coupler.",
+    "tag": "PRODUCTS"
+  },
+  {
+    "id": "coiled-drip-piping",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.04 PM.jpeg",
+    "alt": "Coils of agricultural drip laterals",
+    "title": "Coils of Drip Lateral Piping",
+    "desc": "Bundles of flexible coiled HDPE drip laterals ready for agricultural irrigation systems.",
+    "tag": "PRODUCTS"
+  },
+  {
+    "id": "hdpe-3d-stack",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.05 PM (1).jpeg",
+    "alt": "Stack of blue-striped HDPE pipes render",
+    "title": "Precision Stacked HDPE",
+    "desc": "3D studio visualization of stacked HDPE pipelines with blue identification stripes.",
+    "tag": "PRODUCTS"
+  },
+  {
+    "id": "hdpe-pipe-sizes-chart",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.05 PM (2).jpeg",
+    "alt": "HDPE Pipe Diameter sizes rendering",
+    "title": "Diameter Variations Render",
+    "desc": "Product size chart render showing different diameters of HDPE water pipes.",
+    "tag": "PRODUCTS"
+  },
+  {
+    "id": "vertical-hdpe-tubes",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.05 PM.jpeg",
+    "alt": "Co-extruded blue stripe pipe ends",
+    "title": "Vertical HDPE Tubing",
+    "desc": "Two vertical co-extruded HDPE water pipe sections showing clean blue stripes.",
+    "tag": "PRODUCTS"
+  },
+  {
+    "id": "thick-walled-hdpe-pipes",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.06 PM (1).jpeg",
+    "alt": "High pressure thick wall pipeline inventory",
+    "title": "Thick-Walled HDPE Stack",
+    "desc": "Thick-walled high-pressure HDPE pipes stacked in the yard.",
+    "tag": "INVENTORY"
+  },
+  {
+    "id": "pipe-storage-yard-view",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.06 PM (2).jpeg",
+    "alt": "Extensive pipe and coil logistics yard",
+    "title": "Main Pipe Storage Yard",
+    "desc": "Outdoor warehouse yard displaying straight pipes and massive industrial pipe coils.",
+    "tag": "FACILITY"
+  },
+  {
+    "id": "hdpe-cross-section-mouth",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.06 PM.jpeg",
+    "alt": "Rendered wall thickness cross section",
+    "title": "Pipe Mouth Cross-Section",
+    "desc": "Detailed rendering of the inner core and thickness of a water-carrying HDPE line.",
+    "tag": "PRODUCTS"
+  },
+  {
+    "id": "hillside-pipe-storage",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.07 PM.jpeg",
+    "alt": "Heavy drainage pipes on warehouse slope",
+    "title": "Hillside Pipe Inventory",
+    "desc": "Massive stack of drainage pipes organized on the factory storage slope.",
+    "tag": "INVENTORY"
+  },
+  {
+    "id": "crawler-crane-operation",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.08 PM (1).jpeg",
+    "alt": "Mobile crane loading pipe shipments",
+    "title": "Yard Crane Operation",
+    "desc": "Crawler mobile crane loading heavy-diameter pipes onto the transport bay.",
+    "tag": "FACILITY"
+  },
+  {
+    "id": "industrial-warehouse-shed",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.08 PM (2).jpeg",
+    "alt": "Extrusion plant main warehouse building",
+    "title": "Factory Warehouse Shed",
+    "desc": "Pipes stacked outside the main blue-roofed manufacturing unit of LG Irrigation.",
+    "tag": "FACILITY"
+  },
+  {
+    "id": "green-hose-dispatch",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.08 PM.jpeg",
+    "alt": "Suction hoses and storage coils",
+    "title": "Flex Hose & Pipe Stacks",
+    "desc": "Outdoor pipe stacks showing a flexible green delivery hose on the grass.",
+    "tag": "FACILITY"
+  },
+  {
+    "id": "lg-factory-gate",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.09 PM (1).jpeg",
+    "alt": "LG Irrigation main entrance signboard",
+    "title": "LG Irrigation Factory Entrance",
+    "desc": "The official entrance gate and corporate signboard of LG Irrigation factory.",
+    "tag": "FACILITY"
+  },
+  {
+    "id": "pipe-flatbed-truck",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.09 PM (2).jpeg",
+    "alt": "Flatbed lorry loaded with HDPE water pipes",
+    "title": "Flatbed Loading & Dispatch",
+    "desc": "A flatbed transport truck loaded with large-diameter pipes leaving the factory.",
+    "tag": "FACILITY"
+  },
+  {
+    "id": "roadside-pipe-laying",
+    "src": "/assets/WhatsApp Image 2026-07-04 at 5.00.09 PM.jpeg",
+    "alt": "Trenchless laying of HDPE municipal pipes",
+    "title": "Roadside Pipeline Laying",
+    "desc": "Continuous line of blue-striped HDPE pipes laid along the road for water supply installation.",
+    "tag": "PROJECT"
   }
 ]

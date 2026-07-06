@@ -1433,8 +1433,8 @@ tr:nth-child(even) td {
   z-index: 9999;
   background-color: #F8F9FA;
   background-image: 
-    linear-gradient(rgba(30, 94, 58, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(30, 94, 58, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(43, 77, 50, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(43, 77, 50, 0.04) 1px, transparent 1px);
   background-size: 30px 30px;
   background-position: center;
   display: flex;
@@ -3901,7 +3901,7 @@ tr:nth-child(even) td {
 .gallery-h-controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-top: var(--space-4);
 }
 

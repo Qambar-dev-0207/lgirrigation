@@ -36,16 +36,16 @@ export default function Loader() {
           
           {/* Green Glass Border Gradient */}
           <linearGradient id="glass-edge" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgba(30, 94, 58, 0.45)" />
+            <stop offset="0%" stopColor="rgba(43, 77, 50, 0.45)" />
             <stop offset="50%" stopColor="rgba(255, 255, 255, 0.2)" />
-            <stop offset="100%" stopColor="rgba(30, 94, 58, 0.5)" />
+            <stop offset="100%" stopColor="rgba(43, 77, 50, 0.5)" />
           </linearGradient>
 
           {/* Letter Green Gradient (3D Monogram Base) */}
           <linearGradient id="letter-green" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#2D7249" />
-            <stop offset="50%" stopColor="#1E5E3A" />
-            <stop offset="100%" stopColor="#114024" />
+            <stop offset="0%" stopColor="#355f3e" />
+            <stop offset="70%" stopColor="#2b4d32" />
+            <stop offset="100%" stopColor="#1d3322" />
           </linearGradient>
 
           {/* Metallic Silver Gradient for Coupling Rims */}
@@ -73,8 +73,8 @@ export default function Loader() {
 
           {/* Bevel Filter for 3D Lighting Sheen */}
           <filter id="bevel-filter" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="blur" />
-            <feSpecularLighting in="blur" surfaceScale="4" specularConstant="1.3" specularExponent="16" lightingColor="#ffffff" result="specular">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="2.0" result="blur" />
+            <feSpecularLighting in="blur" surfaceScale="3" specularConstant="0.8" specularExponent="35" lightingColor="#ffffff" result="specular">
               <fePointLight x="-150" y="-250" z="300" />
             </feSpecularLighting>
             <feComposite in="specular" in2="SourceAlpha" operator="in" result="specularOut" />
@@ -101,32 +101,32 @@ export default function Loader() {
         <g className="glass-pane-left" filter="url(#glass-shadow)">
           <rect x="80" y="80" width="280" height="300" rx="8" fill="url(#glass-body)" stroke="url(#glass-edge)" strokeWidth="1.5" />
           {/* Mechanical blueprint drawing on left pane */}
-          <path d="M 120,150 L 120,280 C 120,300 140,320 160,320 L 300,320" fill="none" stroke="rgba(30, 94, 58, 0.14)" strokeWidth="2.5" strokeDasharray="5 5" />
-          <path d="M 140,150 L 140,270 C 140,285 155,300 170,300 L 300,300" fill="none" stroke="rgba(30, 94, 58, 0.22)" strokeWidth="1.5" className="blueprint-line draw-line-1" />
-          <path d="M 100,150 L 100,290 C 100,315 125,340 150,340 L 300,340" fill="none" stroke="rgba(30, 94, 58, 0.22)" strokeWidth="1.5" className="blueprint-line draw-line-2" />
-          <rect x="85" y="200" width="30" height="8" rx="1" fill="none" stroke="rgba(30, 94, 58, 0.2)" strokeWidth="1.5" className="blueprint-line draw-line-3" />
-          <rect x="230" y="292" width="8" height="16" rx="1" fill="none" stroke="rgba(30, 94, 58, 0.2)" strokeWidth="1.5" className="blueprint-line draw-line-3" />
+          <path d="M 120,150 L 120,280 C 120,300 140,320 160,320 L 300,320" fill="none" stroke="rgba(43, 77, 50, 0.14)" strokeWidth="2.5" strokeDasharray="5 5" />
+          <path d="M 140,150 L 140,270 C 140,285 155,300 170,300 L 300,300" fill="none" stroke="rgba(43, 77, 50, 0.22)" strokeWidth="1.5" className="blueprint-line draw-line-1" />
+          <path d="M 100,150 L 100,290 C 100,315 125,340 150,340 L 300,340" fill="none" stroke="rgba(43, 77, 50, 0.22)" strokeWidth="1.5" className="blueprint-line draw-line-2" />
+          <rect x="85" y="200" width="30" height="8" rx="1" fill="none" stroke="rgba(43, 77, 50, 0.2)" strokeWidth="1.5" className="blueprint-line draw-line-3" />
+          <rect x="230" y="292" width="8" height="16" rx="1" fill="none" stroke="rgba(43, 77, 50, 0.2)" strokeWidth="1.5" className="blueprint-line draw-line-3" />
         </g>
 
         {/* Right Glass Pane */}
         <g className="glass-pane-right" filter="url(#glass-shadow)">
           <rect x="640" y="80" width="280" height="300" rx="8" fill="url(#glass-body)" stroke="url(#glass-edge)" strokeWidth="1.5" />
           {/* Mechanical blueprint drawing on right pane */}
-          <path d="M 660,180 L 900,180" fill="none" stroke="rgba(30, 94, 58, 0.14)" strokeWidth="2.5" strokeDasharray="5 5" />
-          <path d="M 660,165 L 755,165 C 765,165 770,170 770,180 L 770,320" fill="none" stroke="rgba(30, 94, 58, 0.22)" strokeWidth="1.5" className="blueprint-line draw-line-1" />
-          <path d="M 660,195 L 785,195 C 795,195 800,200 800,210 L 800,320" fill="none" stroke="rgba(30, 94, 58, 0.22)" strokeWidth="1.5" className="blueprint-line draw-line-2" />
-          <line x1="830" y1="120" x2="830" y2="240" stroke="rgba(30, 94, 58, 0.15)" strokeWidth="1" strokeDasharray="2 2" />
-          <line x1="820" y1="150" x2="840" y2="150" stroke="rgba(30, 94, 58, 0.2)" strokeWidth="1" className="blueprint-line draw-line-3" />
+          <path d="M 660,180 L 900,180" fill="none" stroke="rgba(43, 77, 50, 0.14)" strokeWidth="2.5" strokeDasharray="5 5" />
+          <path d="M 660,165 L 755,165 C 765,165 770,170 770,180 L 770,320" fill="none" stroke="rgba(43, 77, 50, 0.22)" strokeWidth="1.5" className="blueprint-line draw-line-1" />
+          <path d="M 660,195 L 785,195 C 795,195 800,200 800,210 L 800,320" fill="none" stroke="rgba(43, 77, 50, 0.22)" strokeWidth="1.5" className="blueprint-line draw-line-2" />
+          <line x1="830" y1="120" x2="830" y2="240" stroke="rgba(43, 77, 50, 0.15)" strokeWidth="1" strokeDasharray="2 2" />
+          <line x1="820" y1="150" x2="840" y2="150" stroke="rgba(43, 77, 50, 0.2)" strokeWidth="1" className="blueprint-line draw-line-3" />
         </g>
 
         {/* Center Glass Pane */}
         <g className="glass-pane-center" filter="url(#glass-shadow)">
           <rect x="180" y="40" width="640" height="380" rx="12" fill="url(#glass-body)" stroke="url(#glass-edge)" strokeWidth="2" />
           {/* Alignment / Grid guidelines for technical schematic look */}
-          <line x1="200" y1="230" x2="800" y2="230" stroke="rgba(30, 94, 58, 0.12)" strokeWidth="1" strokeDasharray="8 8" />
-          <line x1="500" y1="50" x2="500" y2="410" stroke="rgba(30, 94, 58, 0.12)" strokeWidth="1" strokeDasharray="8 8" />
-          <circle cx="500" cy="230" r="160" fill="none" stroke="rgba(30, 94, 58, 0.06)" strokeWidth="1.5" strokeDasharray="4 4" />
-          <circle cx="500" cy="230" r="90" fill="none" stroke="rgba(30, 94, 58, 0.04)" strokeWidth="1" />
+          <line x1="200" y1="230" x2="800" y2="230" stroke="rgba(43, 77, 50, 0.12)" strokeWidth="1" strokeDasharray="8 8" />
+          <line x1="500" y1="50" x2="500" y2="410" stroke="rgba(43, 77, 50, 0.12)" strokeWidth="1" strokeDasharray="8 8" />
+          <circle cx="500" cy="230" r="160" fill="none" stroke="rgba(43, 77, 50, 0.06)" strokeWidth="1.5" strokeDasharray="4 4" />
+          <circle cx="500" cy="230" r="90" fill="none" stroke="rgba(43, 77, 50, 0.04)" strokeWidth="1" />
         </g>
 
         {/* ==========================================
@@ -197,11 +197,11 @@ export default function Loader() {
             <rect x="555" y="135" width="50" height="12" rx="2" fill="url(#metal-rim)" />
 
             {/* Glass Tube Body */}
-            <rect x="560" y="147" width="40" height="61" fill="url(#glass-body)" stroke="rgba(30, 94, 58, 0.2)" strokeWidth="1" />
+            <rect x="560" y="147" width="40" height="61" fill="url(#glass-body)" stroke="rgba(43, 77, 50, 0.2)" strokeWidth="1" />
             
             {/* Glass Reflections & Internal Fluid Tube */}
             <line x1="570" y1="147" x2="570" y2="208" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="1" />
-            <line x1="580" y1="147" x2="580" y2="208" stroke="rgba(30, 94, 58, 0.2)" strokeWidth="1.5" />
+            <line x1="580" y1="147" x2="580" y2="208" stroke="rgba(43, 77, 50, 0.2)" strokeWidth="1.5" />
             <line x1="590" y1="147" x2="590" y2="208" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="2" strokeDasharray="15 30" />
           </g>
 
@@ -253,7 +253,7 @@ export default function Loader() {
           fontSize="36"
           fontWeight="800"
           letterSpacing="8"
-          fill="#1E5E3A"
+          fill="#2b4d32"
           filter="url(#drop-shadow)"
           className="text-lg-irrigation"
         >
