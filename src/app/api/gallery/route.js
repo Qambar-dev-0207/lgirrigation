@@ -134,24 +134,49 @@ export async function PUT(req) {
 
   try {
     const body = await req.json();
-    if (!Array.isArray(body)) {
-      return NextResponse.json({ error: "Invalid data format" }, { status: 400 });
-    }
-
     const db = await getDb();
-    
-    // Prepare bulk write operations to update order indexes
-    const bulkOps = body.map((item, index) => ({
-      updateOne: {
-        filter: { id: item.id },
-        update: { $set: { order: index } }
-      }
-    }));
 
-    await db.collection("gallery").bulkWrite(bulkOps);
-    return NextResponse.json({ message: "Gallery reordered successfully" });
+    if (!Array.isArray(body)) {
+      // Single gallery item edit
+      const { id } = body;
+      if (!id) {
+        return NextResponse.json({ error: "Missing gallery item ID for update" }, { status: 400 });
+      }
+
+      const { src, alt, title, desc, tag } = body;
+
+      // Prepare update object
+      const updateData = {};
+      if (src !== undefined) updateData.src = src;
+      if (alt !== undefined) updateData.alt = alt;
+      if (title !== undefined) updateData.title = title;
+      if (desc !== undefined) updateData.desc = desc;
+      if (tag !== undefined) updateData.tag = tag ? tag.toUpperCase() : "PROJECT";
+
+      const result = await db.collection("gallery").updateOne(
+        { id },
+        { $set: updateData }
+      );
+
+      if (result.matchedCount === 0) {
+        return NextResponse.json({ error: "Gallery item not found" }, { status: 404 });
+      }
+
+      return NextResponse.json({ message: "Gallery item updated successfully" });
+    } else {
+      // Reordering gallery items
+      const bulkOps = body.map((item, index) => ({
+        updateOne: {
+          filter: { id: item.id },
+          update: { $set: { order: index } }
+        }
+      }));
+
+      await db.collection("gallery").bulkWrite(bulkOps);
+      return NextResponse.json({ message: "Gallery reordered successfully" });
+    }
   } catch (error) {
     console.error("Gallery PUT error:", error);
-    return NextResponse.json({ error: "Failed to update gallery order" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to update gallery items" }, { status: 500 });
   }
 }

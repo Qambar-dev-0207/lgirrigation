@@ -38,6 +38,12 @@ export default function AdminPortal() {
   const [productSuccessMsg, setProductSuccessMsg] = useState("");
   const [productErrorMsg, setProductErrorMsg] = useState("");
 
+  // Editing state for Products
+  const [editingProduct, setEditingProduct] = useState(null);
+  const [editingProductForm, setEditingProductForm] = useState(null);
+  const [editingProductImageFile, setEditingProductImageFile] = useState(null);
+  const [isUploadingEditProductImg, setIsUploadingEditProductImg] = useState(false);
+
   // Gallery state
   const [galleryItems, setGalleryItems] = useState([]);
   const [isLoadingGallery, setIsLoadingGallery] = useState(false);
@@ -53,6 +59,12 @@ export default function AdminPortal() {
   const [isUploadingGalleryImg, setIsUploadingGalleryImg] = useState(false);
   const [gallerySuccessMsg, setGallerySuccessMsg] = useState("");
   const [galleryErrorMsg, setGalleryErrorMsg] = useState("");
+
+  // Editing state for Gallery
+  const [editingGallery, setEditingGallery] = useState(null);
+  const [editingGalleryForm, setEditingGalleryForm] = useState(null);
+  const [editingGalleryImageFile, setEditingGalleryImageFile] = useState(null);
+  const [isUploadingEditGalleryImg, setIsUploadingEditGalleryImg] = useState(false);
 
   // Drag and Drop ordering state
   const [draggedProductIndex, setDraggedProductIndex] = useState(null);
@@ -237,10 +249,15 @@ export default function AdminPortal() {
   };
 
   // Image Upload handler
-  const handleImageUpload = async (file, type) => {
+  const handleImageUpload = async (file, type, isEditing = false) => {
     const isProduct = type === "product";
-    if (isProduct) setIsUploadingProductImg(true);
-    else setIsUploadingGalleryImg(true);
+    if (isProduct) {
+      if (isEditing) setIsUploadingEditProductImg(true);
+      else setIsUploadingProductImg(true);
+    } else {
+      if (isEditing) setIsUploadingEditGalleryImg(true);
+      else setIsUploadingGalleryImg(true);
+    }
 
     const formData = new FormData();
     formData.append("file", file);
@@ -258,9 +275,17 @@ export default function AdminPortal() {
       if (res.ok) {
         const data = await res.json();
         if (isProduct) {
-          setProductForm((prev) => ({ ...prev, image: data.url }));
+          if (isEditing) {
+            setEditingProductForm((prev) => ({ ...prev, image: data.url }));
+          } else {
+            setProductForm((prev) => ({ ...prev, image: data.url }));
+          }
         } else {
-          setGalleryForm((prev) => ({ ...prev, src: data.url }));
+          if (isEditing) {
+            setEditingGalleryForm((prev) => ({ ...prev, src: data.url }));
+          } else {
+            setGalleryForm((prev) => ({ ...prev, src: data.url }));
+          }
         }
       } else {
         const errData = await res.json();
@@ -270,8 +295,13 @@ export default function AdminPortal() {
       console.error("Upload error:", err);
       alert("An error occurred during file upload.");
     } finally {
-      if (isProduct) setIsUploadingProductImg(false);
-      else setIsUploadingGalleryImg(false);
+      if (isProduct) {
+        if (isEditing) setIsUploadingEditProductImg(false);
+        else setIsUploadingProductImg(false);
+      } else {
+        if (isEditing) setIsUploadingEditGalleryImg(false);
+        else setIsUploadingGalleryImg(false);
+      }
     }
   };
 
@@ -341,6 +371,58 @@ export default function AdminPortal() {
     }
   };
 
+  const startEditProduct = (prod) => {
+    setEditingProduct(prod);
+    setEditingProductForm({
+      id: prod.id,
+      title: prod.title || "",
+      standard: prod.standard || "",
+      eyebrow: prod.eyebrow || "",
+      shortDescription: prod.shortDescription || "",
+      longDescription: prod.longDescription || "",
+      image: prod.image || "",
+      rangeSummary: prod.rangeSummary || "",
+      pressureSummary: prod.pressureSummary || "",
+      tags: Array.isArray(prod.tags) ? prod.tags.join(", ") : (prod.tags || ""),
+      features: Array.isArray(prod.features) ? prod.features.join("\n") : (prod.features || ""),
+      rangeDetails: prod.rangeDetails || "",
+      accessories: Array.isArray(prod.accessories) ? prod.accessories.join("\n") : (prod.accessories || ""),
+    });
+  };
+
+  const handleUpdateProduct = async (e) => {
+    e.preventDefault();
+    setProductErrorMsg("");
+    setProductSuccessMsg("");
+
+    if (!editingProductForm.title || !editingProductForm.shortDescription) {
+      alert("Title and Short Description are required.");
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/products", {
+        method: "PUT",
+        headers: getHeaders(),
+        body: JSON.stringify(editingProductForm),
+      });
+
+      if (res.ok) {
+        setProductSuccessMsg("Product updated successfully!");
+        setEditingProduct(null);
+        setEditingProductForm(null);
+        setEditingProductImageFile(null);
+        fetchProducts();
+      } else {
+        const errData = await res.json();
+        alert(errData.error || "Failed to update product");
+      }
+    } catch (err) {
+      console.error("Update product error:", err);
+      alert("An error occurred while updating the product.");
+    }
+  };
+
   // Gallery Actions
   const handleAddGalleryItem = async (e) => {
     e.preventDefault();
@@ -397,6 +479,51 @@ export default function AdminPortal() {
       }
     } catch (err) {
       console.error("Delete gallery item error:", err);
+    }
+  };
+
+  const startEditGallery = (item) => {
+    setEditingGallery(item);
+    setEditingGalleryForm({
+      id: item.id,
+      title: item.title || "",
+      tag: item.tag || "FACILITY",
+      desc: item.desc || "",
+      src: item.src || "",
+      alt: item.alt || "",
+    });
+  };
+
+  const handleUpdateGalleryItem = async (e) => {
+    e.preventDefault();
+    setGalleryErrorMsg("");
+    setGallerySuccessMsg("");
+
+    if (!editingGalleryForm.title || !editingGalleryForm.src) {
+      alert("Title and Image (Upload or URL) are required.");
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/gallery", {
+        method: "PUT",
+        headers: getHeaders(),
+        body: JSON.stringify(editingGalleryForm),
+      });
+
+      if (res.ok) {
+        setGallerySuccessMsg("Gallery item updated successfully!");
+        setEditingGallery(null);
+        setEditingGalleryForm(null);
+        setEditingGalleryImageFile(null);
+        fetchGallery();
+      } else {
+        const errData = await res.json();
+        alert(errData.error || "Failed to update gallery item");
+      }
+    } catch (err) {
+      console.error("Update gallery item error:", err);
+      alert("An error occurred while updating the gallery item.");
     }
   };
 
@@ -970,6 +1097,30 @@ export default function AdminPortal() {
                           </td>
                           <td style={{ padding: "16px 24px", textAlign: "right" }}>
                             <button
+                              onClick={() => startEditProduct(prod)}
+                              style={{
+                                border: "none",
+                                background: "none",
+                                cursor: "pointer",
+                                color: "#3860BE",
+                                fontWeight: 700,
+                                fontSize: "0.875rem",
+                                padding: "6px 12px",
+                                borderRadius: "6px",
+                                backgroundColor: "rgba(56, 96, 190, 0.05)",
+                                transition: "all 0.15s ease",
+                                marginRight: "8px",
+                              }}
+                              onMouseEnter={(e) => {
+                                e.target.style.backgroundColor = "rgba(56, 96, 190, 0.1)";
+                              }}
+                              onMouseLeave={(e) => {
+                                e.target.style.backgroundColor = "rgba(56, 96, 190, 0.05)";
+                              }}
+                            >
+                              Edit
+                            </button>
+                            <button
                               onClick={() => handleDeleteProduct(prod.id)}
                               style={{
                                 border: "none",
@@ -1213,31 +1364,58 @@ export default function AdminPortal() {
                           {item.desc || "No description provided."}
                         </p>
                       </div>
-                      <button
-                        onClick={() => handleDeleteGalleryItem(item.id)}
-                        style={{
-                          width: "100%",
-                          border: "1px solid var(--signal-orange)",
-                          backgroundColor: "transparent",
-                          color: "var(--signal-orange)",
-                          fontWeight: 700,
-                          fontSize: "0.8125rem",
-                          padding: "8px 12px",
-                          borderRadius: "8px",
-                          cursor: "pointer",
-                          transition: "all 0.15s ease",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.target.style.backgroundColor = "var(--signal-orange)";
-                          e.target.style.color = "var(--white)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.backgroundColor = "transparent";
-                          e.target.style.color = "var(--signal-orange)";
-                        }}
-                      >
-                        Remove Image
-                      </button>
+                      <div style={{ display: "flex", gap: "8px", width: "100%" }}>
+                        <button
+                          onClick={() => startEditGallery(item)}
+                          style={{
+                            flex: 1,
+                            border: "1px solid #3860BE",
+                            backgroundColor: "transparent",
+                            color: "#3860BE",
+                            fontWeight: 700,
+                            fontSize: "0.8125rem",
+                            padding: "8px 12px",
+                            borderRadius: "8px",
+                            cursor: "pointer",
+                            transition: "all 0.15s ease",
+                          }}
+                          onMouseEnter={(e) => {
+                            e.target.style.backgroundColor = "#3860BE";
+                            e.target.style.color = "var(--white)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.target.style.backgroundColor = "transparent";
+                            e.target.style.color = "#3860BE";
+                          }}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDeleteGalleryItem(item.id)}
+                          style={{
+                            flex: 1,
+                            border: "1px solid var(--signal-orange)",
+                            backgroundColor: "transparent",
+                            color: "var(--signal-orange)",
+                            fontWeight: 700,
+                            fontSize: "0.8125rem",
+                            padding: "8px 12px",
+                            borderRadius: "8px",
+                            cursor: "pointer",
+                            transition: "all 0.15s ease",
+                          }}
+                          onMouseEnter={(e) => {
+                            e.target.style.backgroundColor = "var(--signal-orange)";
+                            e.target.style.color = "var(--white)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.target.style.backgroundColor = "transparent";
+                            e.target.style.color = "var(--signal-orange)";
+                          }}
+                        >
+                          Remove
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -1247,6 +1425,372 @@ export default function AdminPortal() {
         )}
 
       </div>
+
+      {/* Product Edit Modal */}
+      {editingProduct && (
+        <div style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "rgba(0,0,0,0.5)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 9999,
+          padding: "20px",
+        }}>
+          <div style={{
+            backgroundColor: "#FCFAF9",
+            width: "100%",
+            maxWidth: "800px",
+            maxHeight: "90vh",
+            overflowY: "auto",
+            borderRadius: "20px",
+            padding: "32px",
+            boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)",
+            border: "1px solid rgba(20, 20, 19, 0.08)",
+            position: "relative",
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px", borderBottom: "1px solid rgba(20, 20, 19, 0.08)", paddingBottom: "16px" }}>
+              <h3 style={{ fontSize: "1.5rem", fontWeight: 700, margin: 0, color: "var(--ink-black)" }}>Edit Product</h3>
+              <button
+                onClick={() => {
+                  setEditingProduct(null);
+                  setEditingProductForm(null);
+                  setEditingProductImageFile(null);
+                }}
+                style={{
+                  border: "none",
+                  background: "none",
+                  fontSize: "1.5rem",
+                  cursor: "pointer",
+                  color: "var(--slate-gray)",
+                  fontWeight: 700,
+                }}
+              >
+                &times;
+              </button>
+            </div>
+
+            <form onSubmit={handleUpdateProduct}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "20px" }}>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Title *</label>
+                  <input
+                    type="text"
+                    required
+                    value={editingProductForm.title}
+                    onChange={(e) => setEditingProductForm((p) => ({ ...p, title: e.target.value }))}
+                    placeholder="e.g., PVC Pipe Extra"
+                    style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)" }}
+                  />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Standard License</label>
+                  <input
+                    type="text"
+                    value={editingProductForm.standard}
+                    onChange={(e) => setEditingProductForm((p) => ({ ...p, standard: e.target.value }))}
+                    placeholder="e.g., IS 4984 : 1995"
+                    style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)" }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "20px" }}>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Eyebrow Header</label>
+                  <input
+                    type="text"
+                    value={editingProductForm.eyebrow}
+                    onChange={(e) => setEditingProductForm((p) => ({ ...p, eyebrow: e.target.value }))}
+                    placeholder="e.g., HIGH RESISTANCE WATER"
+                    style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)" }}
+                  />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Tags (comma-separated)</label>
+                  <input
+                    type="text"
+                    value={editingProductForm.tags}
+                    onChange={(e) => setEditingProductForm((p) => ({ ...p, tags: e.target.value }))}
+                    placeholder="e.g., POTABLE WATER, ACID RESISTANT"
+                    style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)" }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Short Description *</label>
+                <textarea
+                  required
+                  rows={2}
+                  value={editingProductForm.shortDescription}
+                  onChange={(e) => setEditingProductForm((p) => ({ ...p, shortDescription: e.target.value }))}
+                  placeholder="Brief text used on cards..."
+                  style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)", fontFamily: "var(--font-primary)" }}
+                />
+              </div>
+
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Long Detailed Description</label>
+                <textarea
+                  rows={4}
+                  value={editingProductForm.longDescription}
+                  onChange={(e) => setEditingProductForm((p) => ({ ...p, longDescription: e.target.value }))}
+                  placeholder="Detailed description..."
+                  style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)", fontFamily: "var(--font-primary)" }}
+                />
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "20px" }}>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Diameter/Size Range Summary</label>
+                  <input
+                    type="text"
+                    value={editingProductForm.rangeSummary}
+                    onChange={(e) => setEditingProductForm((p) => ({ ...p, rangeSummary: e.target.value }))}
+                    placeholder="e.g., 32mm – 500mm"
+                    style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)" }}
+                  />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Pressure Rating Summary</label>
+                  <input
+                    type="text"
+                    value={editingProductForm.pressureSummary}
+                    onChange={(e) => setEditingProductForm((p) => ({ ...p, pressureSummary: e.target.value }))}
+                    placeholder="e.g., PN 2.5 – PN 10"
+                    style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)" }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "20px" }}>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Supply details / Bar &amp; Coil Info</label>
+                  <input
+                    type="text"
+                    value={editingProductForm.rangeDetails}
+                    onChange={(e) => setEditingProductForm((p) => ({ ...p, rangeDetails: e.target.value }))}
+                    placeholder="e.g., Supplied in coils of 100 meters..."
+                    style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)" }}
+                  />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Image (Upload local file to update)</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files[0];
+                      if (file) {
+                        setEditingProductImageFile(file);
+                        handleImageUpload(file, "product", true);
+                      }
+                    }}
+                    style={{ marginBottom: "8px" }}
+                  />
+                  {isUploadingEditProductImg && <span style={{ display: "block", fontSize: "0.75rem", color: "var(--link-blue)" }}>Uploading file...</span>}
+                  {editingProductForm.image && (
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ fontSize: "0.75rem", color: "var(--slate-gray)", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "250px" }}>URL: {editingProductForm.image.substring(0, 40)}...</span>
+                      <img src={editingProductForm.image} alt="Preview" style={{ width: "32px", height: "32px", objectFit: "cover", borderRadius: "4px" }} />
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "24px" }}>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Features / Applications (one per line)</label>
+                  <textarea
+                    rows={3}
+                    value={editingProductForm.features}
+                    onChange={(e) => setEditingProductForm((p) => ({ ...p, features: e.target.value }))}
+                    placeholder="Features..."
+                    style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)", fontFamily: "var(--font-primary)" }}
+                  />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Accessories (one per line)</label>
+                  <textarea
+                    rows={3}
+                    value={editingProductForm.accessories}
+                    onChange={(e) => setEditingProductForm((p) => ({ ...p, accessories: e.target.value }))}
+                    placeholder="Accessories..."
+                    style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)", fontFamily: "var(--font-primary)" }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px", borderTop: "1px solid rgba(20, 20, 19, 0.08)", paddingTop: "20px" }}>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => {
+                    setEditingProduct(null);
+                    setEditingProductForm(null);
+                    setEditingProductImageFile(null);
+                  }}
+                  style={{ padding: "10px 20px" }}
+                >
+                  Cancel
+                </button>
+                <button type="submit" className="btn btn-primary" style={{ padding: "10px 20px" }}>
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Gallery Edit Modal */}
+      {editingGallery && (
+        <div style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "rgba(0,0,0,0.5)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 9999,
+          padding: "20px",
+        }}>
+          <div style={{
+            backgroundColor: "#FCFAF9",
+            width: "100%",
+            maxWidth: "550px",
+            maxHeight: "90vh",
+            overflowY: "auto",
+            borderRadius: "20px",
+            padding: "32px",
+            boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)",
+            border: "1px solid rgba(20, 20, 19, 0.08)",
+            position: "relative",
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px", borderBottom: "1px solid rgba(20, 20, 19, 0.08)", paddingBottom: "16px" }}>
+              <h3 style={{ fontSize: "1.5rem", fontWeight: 700, margin: 0, color: "var(--ink-black)" }}>Edit Gallery Image</h3>
+              <button
+                onClick={() => {
+                  setEditingGallery(null);
+                  setEditingGalleryForm(null);
+                  setEditingGalleryImageFile(null);
+                }}
+                style={{
+                  border: "none",
+                  background: "none",
+                  fontSize: "1.5rem",
+                  cursor: "pointer",
+                  color: "var(--slate-gray)",
+                  fontWeight: 700,
+                }}
+              >
+                &times;
+              </button>
+            </div>
+
+            <form onSubmit={handleUpdateGalleryItem}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "20px" }}>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Title *</label>
+                  <input
+                    type="text"
+                    required
+                    value={editingGalleryForm.title}
+                    onChange={(e) => setEditingGalleryForm((g) => ({ ...g, title: e.target.value }))}
+                    placeholder="e.g., Quality Lab Tester"
+                    style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)" }}
+                  />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Category Tag</label>
+                  <select
+                    value={editingGalleryForm.tag}
+                    onChange={(e) => setEditingGalleryForm((g) => ({ ...g, tag: e.target.value }))}
+                    style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)", backgroundColor: "var(--white)", height: "42px" }}
+                  >
+                    <option value="FACILITY">Facility</option>
+                    <option value="CORPORATE">Corporate</option>
+                    <option value="R&D">R&D / Lab</option>
+                    <option value="PROJECT">Project Site</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Description</label>
+                <textarea
+                  rows={2}
+                  value={editingGalleryForm.desc}
+                  onChange={(e) => setEditingGalleryForm((g) => ({ ...g, desc: e.target.value }))}
+                  placeholder="Brief description of the image..."
+                  style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)", fontFamily: "var(--font-primary)" }}
+                />
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "24px" }}>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Image (Upload local file to update)</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files[0];
+                      if (file) {
+                        setEditingGalleryImageFile(file);
+                        handleImageUpload(file, "gallery", true);
+                      }
+                    }}
+                    style={{ marginBottom: "8px" }}
+                  />
+                  {isUploadingEditGalleryImg && <span style={{ display: "block", fontSize: "0.75rem", color: "var(--link-blue)" }}>Uploading file...</span>}
+                  {editingGalleryForm.src && (
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ fontSize: "0.75rem", color: "var(--slate-gray)", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "150px" }}>URL: {editingGalleryForm.src.substring(0, 30)}...</span>
+                      <img src={editingGalleryForm.src} alt="Preview" style={{ width: "32px", height: "32px", objectFit: "cover", borderRadius: "4px" }} />
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 700, marginBottom: "6px" }}>Alt text</label>
+                  <input
+                    type="text"
+                    value={editingGalleryForm.alt}
+                    onChange={(e) => setEditingGalleryForm((g) => ({ ...g, alt: e.target.value }))}
+                    placeholder="Image accessibility text..."
+                    style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)" }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px", borderTop: "1px solid rgba(20, 20, 19, 0.08)", paddingTop: "20px" }}>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => {
+                    setEditingGallery(null);
+                    setEditingGalleryForm(null);
+                    setEditingGalleryImageFile(null);
+                  }}
+                  style={{ padding: "10px 20px" }}
+                >
+                  Cancel
+                </button>
+                <button type="submit" className="btn btn-primary" style={{ padding: "10px 20px" }}>
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

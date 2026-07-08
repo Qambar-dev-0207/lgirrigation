@@ -157,24 +157,80 @@ export async function PUT(req) {
 
   try {
     const body = await req.json();
-    if (!Array.isArray(body)) {
-      return NextResponse.json({ error: "Invalid data format" }, { status: 400 });
-    }
-
     const db = await getDb();
-    
-    // Prepare bulk write operations to update order indexes
-    const bulkOps = body.map((product, index) => ({
-      updateOne: {
-        filter: { id: product.id },
-        update: { $set: { order: index } }
-      }
-    }));
 
-    await db.collection("products").bulkWrite(bulkOps);
-    return NextResponse.json({ message: "Products reordered successfully" });
+    if (!Array.isArray(body)) {
+      // Single product edit
+      const { id } = body;
+      if (!id) {
+        return NextResponse.json({ error: "Missing product ID for update" }, { status: 400 });
+      }
+
+      const {
+        title,
+        standard,
+        eyebrow,
+        shortDescription,
+        longDescription,
+        image,
+        rangeSummary,
+        pressureSummary,
+        tags,
+        featuresTitle,
+        features,
+        rangeDetails,
+        specTable,
+        accessories
+      } = body;
+
+      // Prepare update object
+      const updateData = {};
+      if (title !== undefined) updateData.title = title;
+      if (standard !== undefined) updateData.standard = standard;
+      if (eyebrow !== undefined) updateData.eyebrow = eyebrow;
+      if (shortDescription !== undefined) updateData.shortDescription = shortDescription;
+      if (longDescription !== undefined) updateData.longDescription = longDescription;
+      if (image !== undefined) updateData.image = image;
+      if (rangeSummary !== undefined) updateData.rangeSummary = rangeSummary;
+      if (pressureSummary !== undefined) updateData.pressureSummary = pressureSummary;
+      if (rangeDetails !== undefined) updateData.rangeDetails = rangeDetails;
+      if (featuresTitle !== undefined) updateData.featuresTitle = featuresTitle;
+      if (specTable !== undefined) updateData.specTable = specTable;
+
+      if (tags !== undefined) {
+        updateData.tags = Array.isArray(tags) ? tags : (tags ? tags.split(",").map(t => t.trim().toUpperCase()) : []);
+      }
+      if (features !== undefined) {
+        updateData.features = Array.isArray(features) ? features : (features ? features.split("\n").map(f => f.trim()).filter(Boolean) : []);
+      }
+      if (accessories !== undefined) {
+        updateData.accessories = Array.isArray(accessories) ? accessories : (accessories ? accessories.split("\n").map(a => a.trim()).filter(Boolean) : null);
+      }
+
+      const result = await db.collection("products").updateOne(
+        { id },
+        { $set: updateData }
+      );
+
+      if (result.matchedCount === 0) {
+        return NextResponse.json({ error: "Product not found" }, { status: 404 });
+      }
+
+      return NextResponse.json({ message: "Product updated successfully" });
+    } else {
+      // Reordering products
+      const bulkOps = body.map((product, index) => ({
+        updateOne: {
+          filter: { id: product.id },
+          update: { $set: { order: index } }
+        }
+      }));
+
+      await db.collection("products").bulkWrite(bulkOps);
+      return NextResponse.json({ message: "Products reordered successfully" });
+    }
   } catch (error) {
     console.error("Products PUT error:", error);
-    return NextResponse.json({ error: "Failed to update product order" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to update products" }, { status: 500 });
   }
 }
