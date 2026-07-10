@@ -35,7 +35,7 @@ export default function Footer() {
             </h2>
             <div className="footer-logo-group">
               <img
-                src="/assets/lglogo.jpeg"
+                src="/assets/lglogo.png"
                 alt="L G Irrigation Logo"
                 style={{
                   height: "45px",

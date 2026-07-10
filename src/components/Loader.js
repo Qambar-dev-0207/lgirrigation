@@ -153,7 +153,7 @@ export default function Loader() {
           <g filter="url(#drop-shadow)" className="element-g">
             <path
               d="M 315,125 L 455,125 A 15,15 0 0 1 470,140 L 470,180 L 415,180 L 415,200 L 470,200 L 470,265 A 15,15 0 0 1 455,280 L 315,280 A 15,15 0 0 1 300,265 L 300,140 A 15,15 0 0 1 315,125 Z M 430,160 L 335,160 L 335,245 L 430,245 L 395,220 L 395,180 L 430,180 Z"
-              fill="url(#letter-green)"
+              fill="url(#stem-black)"
               fillRule="evenodd"
               filter="url(#bevel-filter)"
             />
@@ -188,21 +188,23 @@ export default function Loader() {
             className="element-i-stem-highlight"
           />
 
-          {/* "i" Coupling (Glass Connector) */}
+          {/* "i" Droplet (Green Water Droplet) */}
           <g filter="url(#drop-shadow)" className="element-i-coupling">
-            {/* Bottom Metal Collar */}
-            <rect x="555" y="208" width="50" height="12" rx="2" fill="url(#metal-rim)" />
-            
-            {/* Top Metal Collar */}
-            <rect x="555" y="135" width="50" height="12" rx="2" fill="url(#metal-rim)" />
-
-            {/* Glass Tube Body */}
-            <rect x="560" y="147" width="40" height="61" fill="url(#glass-body)" stroke="rgba(43, 77, 50, 0.2)" strokeWidth="1" />
-            
-            {/* Glass Reflections & Internal Fluid Tube */}
-            <line x1="570" y1="147" x2="570" y2="208" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="1" />
-            <line x1="580" y1="147" x2="580" y2="208" stroke="rgba(43, 77, 50, 0.2)" strokeWidth="1.5" />
-            <line x1="590" y1="147" x2="590" y2="208" stroke="rgba(255, 255, 255, 0.55)" strokeWidth="2" strokeDasharray="15 30" />
+            <path
+              d="M 570,205 C 555,205 543,193 543,178 C 543,158 570,132 570,132 C 570,132 597,158 597,178 C 597,193 585,205 570,205 Z"
+              fill="url(#leaf-glass)"
+              stroke="rgba(76, 175, 80, 0.65)"
+              strokeWidth="2.5"
+              filter="url(#bevel-filter)"
+            />
+            {/* Specular Highlight */}
+            <path
+              d="M 553,178 C 553,168 563,152 568,145"
+              fill="none"
+              stroke="rgba(255, 255, 255, 0.6)"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
           </g>
 
           {/* Green Glass Leaf */}

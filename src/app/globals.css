@@ -1733,7 +1733,7 @@ tr:nth-child(even) td {
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
-  opacity: 0.65;
+  opacity: 0.4;
   transition: opacity 0.5s ease;
   display: block;
 }
@@ -2001,8 +2001,8 @@ tr:nth-child(even) td {
 .hero-minimalist-media-frame {
   position: relative;
   width: 100%;
-  max-width: 460px;
-  aspect-ratio: 1 / 1;
+  max-width: 600px;
+  aspect-ratio: 1.2 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2010,7 +2010,7 @@ tr:nth-child(even) td {
 }
 
 .hero-minimalist-img {
-  width: 100%;
+  width: 125%;
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 20px 40px rgba(20, 20, 19, 0.12));
@@ -2018,8 +2018,8 @@ tr:nth-child(even) td {
 }
 
 @keyframes hero-minimalist-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  0%, 100% { transform: scale(1.22) rotate(-6deg) translateY(0); }
+  50% { transform: scale(1.22) rotate(-6deg) translateY(-12px); }
 }
 
 
@@ -3693,6 +3693,11 @@ tr:nth-child(even) td {
   grid-row: span 2;
   background-color: var(--signal-orange);
   border-color: transparent;
+}
+
+/* Wide card — spans 2 cols, 1 row */
+.lab-bento-card--wide {
+  grid-column: span 2;
 }
 
 .lab-bento-card--featured:hover {

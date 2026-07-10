@@ -48,7 +48,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="nav-logo-group" onClick={closeMobileMenu}>
           <img
-            src="/assets/lglogo.jpeg"
+            src="/assets/lglogo.png"
             alt="L G Irrigation Logo"
             style={{
               height: "40px",

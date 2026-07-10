@@ -6,51 +6,63 @@ import TiltWrapper from "@/components/TiltWrapper";
 
 const TESTS = [
   {
+    id: "visual_appearance",
+    title: "Visual & Squareness",
+    desc: "Verifies surface finish, lack of defects, and out of squareness alignment at pipe ends (Clause 7.1).",
+    icon: "👁️",
+  },
+  {
+    id: "color_stripes",
+    title: "Color & Stripe Dimensions",
+    desc: "Verifies correct pipe color, presence of co-extruded strips, stripe depth (≥0.20 mm), and stripe width (≥3.00 mm) (Clause 6.2 / 6.2.1).",
+    icon: "🎨",
+  },
+  {
     id: "dimensions",
-    title: "Dimensions & Visual",
-    desc: "Checks wall thickness, outer diameter, ovality, and surface finish against precise IS tolerances.",
+    title: "Dimension of Pipes",
+    desc: "Measures outside diameter, ovality tolerance (≤2.2mm), and wall thickness (4.30 - 4.90 mm) (Clause 7.4).",
     icon: "📐",
   },
   {
-    id: "tensile",
-    title: "Tensile Strength Test",
-    desc: "Pulls pipe sections under extreme force to measure yield stress and ultimate elongation percentage.",
-    icon: "💪",
-  },
-  {
-    id: "mfi",
-    title: "Melt Flow Index (MFI)",
-    desc: "Measures polymer flow rate to certify high molecular weight raw material stability.",
-    icon: "🌡️",
-  },
-  {
-    id: "density",
-    title: "Specific Gravity & Density",
-    desc: "Uses fluid buoyancy displacement to verify material density standards are met.",
-    icon: "⚖️",
-  },
-  {
-    id: "pressure",
-    title: "Hydrostatic Pressure Test",
-    desc: "Subjects pipe samples to prolonged high internal pressures (up to 100 hours) at elevated temperatures.",
+    id: "hydraulic",
+    title: "Hydraulic Characteristics",
+    desc: "Acceptance pressure test conducted at 5.7 MPa induced stress for 48 hours at 80°C without failure (Clause 8.1).",
     icon: "🚰",
   },
   {
     id: "reversion",
-    title: "Reversion Testing",
-    desc: "Heats samples in a hot air oven (110°C) to measure thermal shrinkage and material orientation stability.",
+    title: "Reversion Test",
+    desc: "Heats sample segments in a hot air oven at 110°C to verify longitudinal heat reversion and thermal stability (Clause 8.2).",
     icon: "🔥",
   },
   {
-    id: "cbc",
-    title: "Carbon Black Content (CBC)",
-    desc: "Verifies carbon black concentration (typically 2-3%) for solar UV protection.",
-    icon: "☀️",
+    id: "tensile",
+    title: "Elongation & Yield Strength",
+    desc: "Measures percentage elongation at break (≥350%) and tensile strength at yield (≥15 MPa) (Clause 8.9).",
+    icon: "💪",
   },
   {
-    id: "cbd",
-    title: "Carbon Black Dispersion (CBD)",
-    desc: "Scans compound uniformity under microscope magnification to check for stress-crack prevention.",
+    id: "density",
+    title: "Density at 27°C",
+    desc: "Verifies base polymer and compound density (940 - 960 kg/m³) to ensure structural uniformity (Clause 8.7).",
+    icon: "⚖️",
+  },
+  {
+    id: "oit",
+    title: "Oxidation Induction Time",
+    desc: "Assesses thermal stability and antioxidant levels to guarantee longevity under oxygen flow (Clause 8.5).",
+    icon: "⏱️",
+  },
+  {
+    id: "mfi",
+    title: "Melt Flow Rate",
+    desc: "Measures Melt Flow Index (MFR) in g/10 min to verify processing stability and consistency (Clause 8.4).",
+    icon: "🌡️",
+  },
+  {
+    id: "carbon_black",
+    title: "Carbon Black Content & Dispersion",
+    desc: "Determines carbon black content percentage (2.5±0.5%) and uniformity of dispersion under magnification (Clause 8.3).",
     icon: "🔬",
   },
 ];
@@ -139,7 +151,7 @@ export default function Quality() {
               <h2 style={{ color: "var(--white)", marginBottom: 0 }}>Major Tests Performed</h2>
             </div>
             <div className="lab-bento-count">
-              <span className="lab-bento-count-num">08</span>
+              <span className="lab-bento-count-num">{String(TESTS.length).padStart(2, "0")}</span>
               <span className="lab-bento-count-label">Quality<br/>Checks</span>
             </div>
           </div>
@@ -149,7 +161,9 @@ export default function Quality() {
             {TESTS.map((test, i) => (
               <div
                 key={test.id}
-                className={`lab-bento-card ${i === 0 ? "lab-bento-card--featured" : ""} ${i % 3 === 1 ? "lab-bento-card--dark" : ""}`}
+                className={`lab-bento-card ${
+                  i === 0 ? "lab-bento-card--featured" : i >= 8 ? "lab-bento-card--wide" : ""
+                } ${i % 3 === 1 ? "lab-bento-card--dark" : ""}`}
               >
                 <span className="lab-bento-ghost">{String(i + 1).padStart(2, "0")}</span>
                 <div className="lab-bento-inner">

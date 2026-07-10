@@ -127,7 +127,7 @@ export default function Home() {
         <div className="hero-stadium-frame">
           {/* Background image */}
           <img
-            src="/assets/hero_factory.png"
+            src="/assets/hero_factory.jpg"
             alt="L G Irrigation manufacturing facility"
             className="hero-stadium-img"
           />
@@ -258,8 +258,8 @@ export default function Home() {
             <AnimateOnScroll className="reveal reveal-right" style={{ display: "flex", justifyContent: "center", position: "relative" }}>
               <div className="hero-minimalist-media-frame">
                 <img
-                  src="/assets/ChatGPT_Image_Jun_28__2026__11_25_11_AM-removebg-preview.png"
-                  alt="LGI Engineered Pipe"
+                  src="/assets/minimalist_pipes.png"
+                  alt="LGI Engineered Pipes"
                   className="hero-minimalist-img"
                   loading="lazy"
                 />
@@ -320,6 +320,38 @@ export default function Home() {
           </div>
 
           <ApprovalsGrid />
+
+          {/* Major Gov Project Customers */}
+          <div style={{ marginTop: "var(--space-10)", borderTop: "1px solid rgba(20,20,19,0.1)", paddingTop: "var(--space-8)" }}>
+            <div style={{ maxWidth: "600px", marginBottom: "var(--space-6)" }}>
+              <span className="eyebrow">GOVERNMENT PROJECT EXECUTIONS</span>
+              <h3>Major Corporate &amp; Contractor Clients</h3>
+              <p>Supply partners delivering our high-density pipeline networks for state-wide water supply and infrastructure contracts.</p>
+            </div>
+
+            <div className="customer-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
+              <div className="customer-card">
+                <span className="customer-name" style={{ fontSize: "0.9375rem", fontWeight: "700", display: "block" }}>Zillion Infra Project Pvt. Ltd.</span>
+                <span className="customer-loc">Govt. Infrastructure Contractor</span>
+              </div>
+              <div className="customer-card">
+                <span className="customer-name" style={{ fontSize: "0.9375rem", fontWeight: "700", display: "block" }}>O.P. Constructions (P) Ltd.</span>
+                <span className="customer-loc">Govt. Water Supply Projects</span>
+              </div>
+              <div className="customer-card">
+                <span className="customer-name" style={{ fontSize: "0.9375rem", fontWeight: "700", display: "block" }}>Shiv Bhandar</span>
+                <span className="customer-loc">Govt. Infrastructure Projects</span>
+              </div>
+              <div className="customer-card">
+                <span className="customer-name" style={{ fontSize: "0.9375rem", fontWeight: "700", display: "block" }}>Infra Project Pvt. Ltd.</span>
+                <span className="customer-loc">Civil Infrastructure Pipeline Contracts</span>
+              </div>
+              <div className="customer-card">
+                <span className="customer-name" style={{ fontSize: "0.9375rem", fontWeight: "700", display: "block" }}>JSP</span>
+                <span className="customer-loc">Govt. Irrigation &amp; Piping Schemes</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
