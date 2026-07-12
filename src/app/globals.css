@@ -1431,185 +1431,107 @@ tr:nth-child(even) td {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background-color: #F8F9FA;
-  background-image: 
-    linear-gradient(rgba(43, 77, 50, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(43, 77, 50, 0.04) 1px, transparent 1px);
-  background-size: 30px 30px;
-  background-position: center;
+  background-color: #FFFFFF;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   pointer-events: none;
 }
 
 .loader-wrapper.hiding {
-  animation: loaderCurtainUp 0.9s cubic-bezier(0.76, 0, 0.24, 1) 0.2s both;
+  animation: loaderCurtainUp 0.8s cubic-bezier(0.76, 0, 0.24, 1) 0.1s both;
 }
 
 .loader-wrapper.hidden {
   display: none;
 }
 
-.loader-svg {
-  width: 90%;
-  max-width: 620px;
+.loader-logo-container {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: containerPulse 2.5s ease-in-out 1.2s infinite alternate;
+}
+
+.loader-logo-img {
+  width: 100%;
   height: auto;
-}
-
-/* Glass Panes Entrance Animations */
-.glass-pane-left {
+  display: block;
   opacity: 0;
-  transform: translateX(-40px);
-  animation: slideInPane 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: scale(0.8) translateY(20px);
+  animation: logoIntro 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
 }
 
-.glass-pane-right {
+.loader-logo-shimmer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   opacity: 0;
-  transform: translateX(40px);
-  animation: slideInPane 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.5s ease-out 1.2s forwards;
+  
+  /* Mask to the logo shape */
+  mask-image: url('/assets/lglogo.png');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: url('/assets/lglogo.png');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
 }
 
-.glass-pane-center {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: slideInPane 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+.loader-logo-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.55) 45%,
+    rgba(255, 255, 255, 0.75) 50%,
+    rgba(255, 255, 255, 0.55) 55%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: rotate(15deg);
+  animation: shineSweep 2.2s cubic-bezier(0.4, 0, 0.2, 1) 1.5s infinite;
 }
 
-@keyframes slideInPane {
+@keyframes logoIntro {
   to {
     opacity: 1;
-    transform: translate(0);
+    transform: scale(1) translateY(0);
   }
 }
 
-/* Blueprint drawing lines */
-.blueprint-line {
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-}
-
-.draw-line-1 {
-  animation: drawBlueprintLine 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
-}
-
-.draw-line-2 {
-  animation: drawBlueprintLine 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s forwards;
-}
-
-.draw-line-3 {
-  animation: drawBlueprintLine 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.9s forwards;
-}
-
-@keyframes drawBlueprintLine {
-  to {
-    stroke-dashoffset: 0;
+@keyframes containerPulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.05));
+  }
+  100% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.12));
   }
 }
 
-/* Monogram Assembly Animations */
-.logo-group {
-  transform-origin: 500px 230px;
-}
-
-.element-l {
-  opacity: 0;
-  transform: scale(0.85) translate(-10px, 10px);
-  transform-origin: 375px 222px;
-  animation: popLetter 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
-}
-
-.element-g {
-  opacity: 0;
-  transform: scale(0.85) translate(10px, 10px);
-  transform-origin: 385px 202px;
-  animation: popLetter 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.55s forwards;
-}
-
-@keyframes popLetter {
+@keyframes fadeIn {
   to {
     opacity: 1;
-    transform: scale(1) translate(0, 0);
   }
 }
 
-.element-i-stem {
-  opacity: 0;
-  transform: translateY(60px);
-  animation: riseStem 1s cubic-bezier(0.25, 1, 0.5, 1) 0.7s forwards;
-}
-
-@keyframes riseStem {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+@keyframes shineSweep {
+  0% {
+    left: -150%;
   }
-}
-
-.element-i-coupling {
-  opacity: 0;
-  transform: translateY(-80px);
-  transform-origin: 580px 167px;
-  animation: dropCoupling 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.85s forwards;
-}
-
-@keyframes dropCoupling {
-  0% { opacity: 0; transform: translateY(-80px) scaleY(1.3); }
-  60% { opacity: 1; transform: translateY(0) scaleY(0.9); }
-  75% { transform: translateY(-8px) scaleY(1.05); }
-  90% { transform: translateY(0) scaleY(0.98); }
-  100% { opacity: 1; transform: translateY(0) scaleY(1); }
-}
-
-.element-leaf {
-  opacity: 0;
-  transform: scale(0) rotate(-25deg);
-  transform-origin: 595px 150px;
-  animation: growLeaf 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 1.1s forwards;
-}
-
-@keyframes growLeaf {
-  to {
-    opacity: 1;
-    transform: scale(1) rotate(0);
-  }
-}
-
-/* Glass Leaf Specular pulse */
-.leaf-specular {
-  stroke-dasharray: 250;
-  stroke-dashoffset: 250;
-  animation: drawBlueprintLine 1.2s ease-out 1.8s forwards, pulseSpecular 3s ease-in-out 3s infinite alternate;
-}
-
-@keyframes pulseSpecular {
-  0% { opacity: 0.4; }
-  100% { opacity: 0.95; }
-}
-
-.element-leaf path {
-  animation: leafGlow 2.5s ease-in-out 2.3s infinite alternate;
-}
-
-@keyframes leafGlow {
-  0% { filter: drop-shadow(0 0 2px rgba(76, 175, 80, 0.2)); }
-  100% { filter: drop-shadow(0 0 10px rgba(76, 175, 80, 0.5)); }
-}
-
-/* Brand Name Text Animation */
-.text-lg-irrigation {
-  opacity: 0;
-  transform: translateY(15px);
-  letter-spacing: 0.1em;
-  animation: revealText 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
-}
-
-@keyframes revealText {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    letter-spacing: 8px;
+  40%, 100% {
+    left: 100%;
   }
 }
 
