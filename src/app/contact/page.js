@@ -76,22 +76,32 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Vector Map (Minimalist, Editorial) */}
+              {/* Google Map Integration */}
               <div style={{ backgroundColor: "var(--white)", border: "1px solid var(--dust-taupe)", borderRadius: "20px", padding: "var(--space-4)", marginTop: "var(--space-2)", textAlign: "center", boxShadow: "var(--shadow-level-1)" }}>
-                <h4 style={{ fontWeight: 500, marginBottom: "var(--space-1)", fontSize: "1rem" }}>Jaipur SEZ Location Grid</h4>
-                <p style={{ fontSize: "0.8125rem", color: "var(--slate-gray)", marginBottom: "var(--space-3)" }}>Interactive GPS coordinates map approximation.</p>
-                <div style={{ backgroundColor: "var(--canvas-cream)", height: "160px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
-                  <svg style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", opacity: 0.15 }} width="100%" height="100%">
-                    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="var(--ink-black)" strokeWidth="1"/>
-                    </pattern>
-                    <rect width="100%" height="100%" fill="url(#grid)" />
-                  </svg>
-                  <div style={{ zIndex: 2, display: "flex", flexDirection: "column", alignItems: "center" }}>
-                    <div className="map-pulse-marker"></div>
-                    <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--ink-black)", marginTop: "8px", textTransform: "uppercase", letterSpacing: "0.05em" }}>LGI PLANT (SEC 103)</span>
-                  </div>
+                <h4 style={{ fontWeight: 500, marginBottom: "var(--space-1)", fontSize: "1rem" }}>Jaipur SEZ Location</h4>
+                <p style={{ fontSize: "0.8125rem", color: "var(--slate-gray)", marginBottom: "var(--space-3)" }}>Find our manufacturing facility on Google Maps.</p>
+                <div style={{ height: "200px", borderRadius: "12px", overflow: "hidden", border: "1px solid var(--dust-taupe)", marginBottom: "var(--space-3)" }}>
+                  <iframe 
+                    title="L G Irrigation Manufacturing Facility Location"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3564.8802293410766!2d75.5935841!3d26.7993084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c37a1121ed79b%3A0xd84bfae843094425!2sL%20G%20Irrigation!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
                 </div>
+                <a 
+                  href="https://share.google/T9j5JDJyKPqofWTPb" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn btn-secondary" 
+                  style={{ display: "inline-flex", alignItems: "center", gap: "8px", textDecoration: "none", fontSize: "0.875rem", width: "100%", justifyContent: "center" }}
+                >
+                  <svg viewBox="0 0 24 24" style={{ width: "16px", height: "16px", fill: "currentColor" }}><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  Open in Google Maps
+                </a>
               </div>
 
             </div>
@@ -178,7 +188,7 @@ export default function Contact() {
             <div style={{ display: "flex", justifyContent: "center" }}>
               <div className="portrait-circle-wrapper" style={{ width: "320px", height: "320px", marginBottom: 0 }}>
                 <div className="portrait-circle">
-                  <img src="/assets/fast_fusion.png" alt="Fast Fusion poly pipe welding trac machine" />
+                  <img src="/assets/fast_fusion.jpg" alt="Fast Fusion poly pipe welding trac machine" />
                 </div>
               </div>
             </div>
@@ -192,27 +202,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <style jsx global>{`
-        .map-pulse-marker {
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-          background-color: var(--light-signal-orange);
-          box-shadow: 0 0 0 8px rgba(243, 115, 56, 0.2);
-          animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-          0% {
-            box-shadow: 0 0 0 0 rgba(243, 115, 56, 0.4);
-          }
-          70% {
-            box-shadow: 0 0 0 12px rgba(243, 115, 56, 0);
-          }
-          100% {
-            box-shadow: 0 0 0 0 rgba(243, 115, 56, 0);
-          }
-        }
-      `}</style>
+
     </main>
   );
 }

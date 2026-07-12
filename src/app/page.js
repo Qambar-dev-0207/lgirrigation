@@ -442,7 +442,7 @@ export default function Home() {
             <AnimateOnScroll className="reveal reveal-left">
               <div className="parallax-img-wrapper" style={{ height: "380px" }}>
                 <img
-                  src="/assets/fast_fusion.png"
+                  src="/assets/fast_fusion.jpg"
                   alt="Fast Fusion pipe welding machine"
                   className="parallax-img"
                   style={{ height: "100%" }}

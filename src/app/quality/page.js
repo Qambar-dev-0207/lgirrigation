@@ -94,7 +94,7 @@ export default function Quality() {
             <AnimateOnScroll className="reveal reveal-right" style={{ display: "flex", justifyContent: "center" }}>
               <TiltWrapper className="portrait-circle-wrapper" style={{ width: "320px", height: "320px", marginBottom: 0 }}>
                 <div className="portrait-circle">
-                  <img src="/assets/quality_lab.png" alt="LGI Quality Testing Laboratory" style={{ filter: "brightness(0.95)" }} />
+                  <img src="/assets/quality_lab.jpg" alt="LGI Quality Testing Laboratory" style={{ filter: "brightness(0.95)" }} />
                 </div>
               </TiltWrapper>
             </AnimateOnScroll>
