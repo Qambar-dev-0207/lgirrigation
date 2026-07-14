@@ -83,6 +83,45 @@ export default function About() {
         </div>
       </section>
 
+      {/* Leadership Section */}
+      <section className="bg-raised" style={{ borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
+        <div className="container">
+          <div className="grid-2" style={{ alignItems: "center", gap: "var(--space-6)" }}>
+            <AnimateOnScroll className="reveal reveal-left">
+              <span className="eyebrow">Leadership</span>
+              <h2>Gordhan Sharma</h2>
+              <h4 style={{ color: "var(--light-signal-orange)", marginBottom: "var(--space-3)", fontWeight: 600 }}>Managing Partner & CEO</h4>
+              <p className="lead" style={{ fontStyle: "italic", color: "var(--ink-black)" }}>
+                "Gordhan Sharma has been serving as the Managing Partner and CEO of LG Irrigation since 2011."
+              </p>
+              <p>
+                He has played a key role in establishing and expanding the company as a trusted manufacturer of high-quality HDPE piping solutions. He provides strategic leadership across business development, manufacturing operations, quality management, and customer relationships.
+              </p>
+              <p>
+                Under his leadership, LG Irrigation remains committed to delivering reliable products, maintaining high manufacturing standards, and building long-term partnerships with customers. Driven by a vision of innovation, operational excellence, and sustainable growth, he is focused on expanding the company's presence while upholding the highest standards of quality and business ethics.
+              </p>
+              <div style={{ marginTop: "var(--space-4)", borderLeft: "3px solid var(--light-signal-orange)", paddingLeft: "var(--space-3)", fontStyle: "italic", color: "var(--slate-gray)" }}>
+                "We believe that quality, integrity, innovation, and customer satisfaction are the foundation of long-term success."
+              </div>
+            </AnimateOnScroll>
+            <AnimateOnScroll className="reveal reveal-right" style={{ display: "flex", justifyContent: "center" }}>
+              <div style={{ position: "relative", width: "100%", maxWidth: "400px", padding: "var(--space-4)", backgroundColor: "var(--ink-black)", borderRadius: "var(--radius-card)", color: "var(--canvas-cream)", boxShadow: "var(--shadow-level-3)" }}>
+                <span style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--slate-gray)" }}>ESTABLISHED 2011</span>
+                <h3 style={{ color: "var(--canvas-cream)", marginTop: "var(--space-2)", marginBottom: "var(--space-4)" }}>L G Irrigation</h3>
+                <p style={{ color: "var(--slate-gray)", fontSize: "0.875rem" }}>Reliable piping solutions for agricultural, industrial, and municipal projects across India.</p>
+                <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)", marginTop: "var(--space-4)", paddingTop: "var(--space-4)", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                  <div style={{ width: "40px", height: "40px", borderRadius: "50%", backgroundColor: "var(--light-signal-orange)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", fontWeight: "bold", color: "white" }}>GS</div>
+                  <div>
+                    <h5 style={{ margin: 0, color: "var(--canvas-cream)" }}>Gordhan Sharma</h5>
+                    <span style={{ fontSize: "0.75rem", color: "var(--slate-gray)" }}>Managing Partner & CEO</span>
+                  </div>
+                </div>
+              </div>
+            </AnimateOnScroll>
+          </div>
+        </div>
+      </section>
+
       {/* Our Values Section */}
       <section id="values" className="bg-raised">
         <div className="ghost-watermark watermark-right">OUR PRINCIPLES</div>
@@ -146,8 +185,8 @@ export default function About() {
             {/* Top Level Node */}
             <div style={{ textAlign: "center", marginBottom: "var(--space-4)" }}>
               <div style={{ display: "inline-block", backgroundColor: "var(--ink-black)", color: "var(--canvas-cream)", padding: "var(--space-2) var(--space-4)", borderRadius: "var(--radius-btn)", boxShadow: "var(--shadow-level-2)", cursor: "pointer" }}>
-                <h3 style={{ color: "var(--canvas-cream)", marginBottom: 0, fontSize: "1.125rem" }}>MANAGING PARTNER</h3>
-                <span style={{ fontSize: "0.75rem", color: "var(--slate-gray)", textTransform: "uppercase", fontWeight: 700, letterSpacing: "0.05em" }}>Executive Leadership</span>
+                <h3 style={{ color: "var(--canvas-cream)", marginBottom: 0, fontSize: "1.125rem" }}>Gordhan Sharma</h3>
+                <span style={{ fontSize: "0.75rem", color: "var(--slate-gray)", textTransform: "uppercase", fontWeight: 700, letterSpacing: "0.05em" }}>Managing Partner & CEO</span>
               </div>
             </div>
 
