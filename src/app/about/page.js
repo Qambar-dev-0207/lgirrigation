@@ -92,16 +92,16 @@ export default function About() {
               <h2>Gordhan Sharma</h2>
               <h4 style={{ color: "var(--light-signal-orange)", marginBottom: "var(--space-3)", fontWeight: 600 }}>Managing Partner & CEO</h4>
               <p className="lead" style={{ fontStyle: "italic", color: "var(--ink-black)" }}>
-                "Gordhan Sharma has been serving as the Managing Partner and CEO of LG Irrigation since 2011."
+                &quot;Gordhan Sharma has been serving as the Managing Partner and CEO of LG Irrigation since 2011.&quot;
               </p>
               <p>
                 He has played a key role in establishing and expanding the company as a trusted manufacturer of high-quality HDPE piping solutions. He provides strategic leadership across business development, manufacturing operations, quality management, and customer relationships.
               </p>
               <p>
-                Under his leadership, LG Irrigation remains committed to delivering reliable products, maintaining high manufacturing standards, and building long-term partnerships with customers. Driven by a vision of innovation, operational excellence, and sustainable growth, he is focused on expanding the company's presence while upholding the highest standards of quality and business ethics.
+                Under his leadership, LG Irrigation remains committed to delivering reliable products, maintaining high manufacturing standards, and building long-term partnerships with customers. Driven by a vision of innovation, operational excellence, and sustainable growth, he is focused on expanding the company&apos;s presence while upholding the highest standards of quality and business ethics.
               </p>
               <div style={{ marginTop: "var(--space-4)", borderLeft: "3px solid var(--light-signal-orange)", paddingLeft: "var(--space-3)", fontStyle: "italic", color: "var(--slate-gray)" }}>
-                "We believe that quality, integrity, innovation, and customer satisfaction are the foundation of long-term success."
+                &quot;We believe that quality, integrity, innovation, and customer satisfaction are the foundation of long-term success.&quot;
               </div>
             </AnimateOnScroll>
             <AnimateOnScroll className="reveal reveal-right" style={{ display: "flex", justifyContent: "center" }}>

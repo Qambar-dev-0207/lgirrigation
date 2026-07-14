@@ -4072,11 +4072,19 @@ tr:nth-child(even) td {
 @media (max-width: 600px) {
   .lab-bento-grid {
     grid-template-columns: 1fr;
-    grid-auto-rows: 180px;
+    grid-auto-rows: auto;
+    gap: 16px;
+  }
+  .lab-bento-card {
+    min-height: 150px;
   }
   .lab-bento-card--featured {
     grid-column: span 1;
-    height: 220px;
+    height: auto;
+    min-height: 200px;
+  }
+  .lab-bento-card--wide {
+    grid-column: span 1;
   }
   .lab-bento-header {
     flex-direction: column;

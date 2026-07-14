@@ -70,9 +70,64 @@ export default function AdminPortal() {
   const [draggedProductIndex, setDraggedProductIndex] = useState(null);
   const [draggedGalleryIndex, setDraggedGalleryIndex] = useState(null);
 
+  const getHeaders = () => {
+    const token = localStorage.getItem("lg_admin_auth");
+    return {
+      "Authorization": `Basic ${token}`,
+      "Content-Type": "application/json",
+    };
+  };
+
+  const fetchStats = async () => {
+    setIsLoadingStats(true);
+    try {
+      const res = await fetch("/api/visitors");
+      if (res.ok) {
+        const data = await res.json();
+        setVisitorCount(data.count);
+      }
+    } catch (err) {
+      console.error("Error fetching stats:", err);
+    } finally {
+      setIsLoadingStats(false);
+    }
+  };
+
+  const fetchProducts = async () => {
+    setIsLoadingProducts(true);
+    try {
+      const res = await fetch("/api/products");
+      if (res.ok) {
+        const data = await res.json();
+        setProducts(data);
+      }
+    } catch (err) {
+      console.error("Error fetching products:", err);
+    } finally {
+      setIsLoadingProducts(false);
+    }
+  };
+
+  const fetchGallery = async () => {
+    setIsLoadingGallery(true);
+    try {
+      const res = await fetch("/api/gallery");
+      if (res.ok) {
+        const data = await res.json();
+        setGalleryItems(data);
+      }
+    } catch (err) {
+      console.error("Error fetching gallery:", err);
+    } finally {
+      setIsLoadingGallery(false);
+    }
+  };
+
   // Fetch token from localStorage
   useEffect(() => {
-    setIsMounted(true);
+    setTimeout(() => {
+      setIsMounted(true);
+    }, 0);
     const token = localStorage.getItem("lg_admin_auth");
     if (token) {
       fetch("/api/login", {
@@ -98,9 +153,12 @@ export default function AdminPortal() {
   // Fetch dashboard data
   useEffect(() => {
     if (isLoggedIn) {
-      fetchStats();
-      fetchProducts();
-      fetchGallery();
+      const timer = setTimeout(() => {
+        fetchStats();
+        fetchProducts();
+        fetchGallery();
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [isLoggedIn]);
 
@@ -195,58 +253,7 @@ export default function AdminPortal() {
     setPassword("");
   };
 
-  const getHeaders = () => {
-    const token = localStorage.getItem("lg_admin_auth");
-    return {
-      "Authorization": `Basic ${token}`,
-      "Content-Type": "application/json",
-    };
-  };
 
-  const fetchStats = async () => {
-    setIsLoadingStats(true);
-    try {
-      const res = await fetch("/api/visitors");
-      if (res.ok) {
-        const data = await res.json();
-        setVisitorCount(data.count);
-      }
-    } catch (err) {
-      console.error("Error fetching stats:", err);
-    } finally {
-      setIsLoadingStats(false);
-    }
-  };
-
-  const fetchProducts = async () => {
-    setIsLoadingProducts(true);
-    try {
-      const res = await fetch("/api/products");
-      if (res.ok) {
-        const data = await res.json();
-        setProducts(data);
-      }
-    } catch (err) {
-      console.error("Error fetching products:", err);
-    } finally {
-      setIsLoadingProducts(false);
-    }
-  };
-
-  const fetchGallery = async () => {
-    setIsLoadingGallery(true);
-    try {
-      const res = await fetch("/api/gallery");
-      if (res.ok) {
-        const data = await res.json();
-        setGalleryItems(data);
-      }
-    } catch (err) {
-      console.error("Error fetching gallery:", err);
-    } finally {
-      setIsLoadingGallery(false);
-    }
-  };
 
   // Image Upload handler
   const handleImageUpload = async (file, type, isEditing = false) => {

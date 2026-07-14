@@ -200,7 +200,7 @@ export default function Home() {
             </h1>
 
             <p className="hero-subtext">
-              India's trusted manufacturer of high-density polyethylene pipelines, sewerage systems, and precision sprinkler networks — ISO 9001:2015 certified, BIS licensed, and government approved.
+              India&apos;s trusted manufacturer of high-density polyethylene pipelines, sewerage systems, and precision sprinkler networks — ISO 9001:2015 certified, BIS licensed, and government approved.
             </p>
 
             <div className="hero-cta-row">
