@@ -13,6 +13,14 @@ export default function About() {
 
   const orgNodes = [
     {
+      id: "bizdev",
+      badge: "Business Development",
+      title: "Head of Business Development",
+      items: [
+        { label: "Kanha Sharma", desc: "Leads business development, market expansion, contractor partnerships, and strategic growth opportunities across India." },
+      ],
+    },
+    {
       id: "production",
       badge: "Production",
       title: "Production Manager",
@@ -86,38 +94,77 @@ export default function About() {
       {/* Leadership Section */}
       <section className="bg-raised" style={{ borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
         <div className="container">
-          <div className="grid-2" style={{ alignItems: "center", gap: "var(--space-6)" }}>
-            <AnimateOnScroll className="reveal reveal-left">
-              <span className="eyebrow">Leadership</span>
-              <h2>Gordhan Sharma</h2>
-              <h4 style={{ color: "var(--light-signal-orange)", marginBottom: "var(--space-3)", fontWeight: 600 }}>Managing Partner & CEO</h4>
-              <p className="lead" style={{ fontStyle: "italic", color: "var(--ink-black)" }}>
-                &quot;Gordhan Sharma has been serving as the Managing Partner and CEO of LG Irrigation since 2011.&quot;
-              </p>
-              <p>
-                He has played a key role in establishing and expanding the company as a trusted manufacturer of high-quality HDPE piping solutions. He provides strategic leadership across business development, manufacturing operations, quality management, and customer relationships.
-              </p>
-              <p>
-                Under his leadership, LG Irrigation remains committed to delivering reliable products, maintaining high manufacturing standards, and building long-term partnerships with customers. Driven by a vision of innovation, operational excellence, and sustainable growth, he is focused on expanding the company&apos;s presence while upholding the highest standards of quality and business ethics.
-              </p>
-              <div style={{ marginTop: "var(--space-4)", borderLeft: "3px solid var(--light-signal-orange)", paddingLeft: "var(--space-3)", fontStyle: "italic", color: "var(--slate-gray)" }}>
-                &quot;We believe that quality, integrity, innovation, and customer satisfaction are the foundation of long-term success.&quot;
-              </div>
-            </AnimateOnScroll>
-            <AnimateOnScroll className="reveal reveal-right" style={{ display: "flex", justifyContent: "center" }}>
-              <div style={{ position: "relative", width: "100%", maxWidth: "400px", padding: "var(--space-4)", backgroundColor: "var(--ink-black)", borderRadius: "var(--radius-card)", color: "var(--canvas-cream)", boxShadow: "var(--shadow-level-3)" }}>
-                <span style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--slate-gray)" }}>ESTABLISHED 2011</span>
-                <h3 style={{ color: "var(--canvas-cream)", marginTop: "var(--space-2)", marginBottom: "var(--space-4)" }}>L G Irrigation</h3>
-                <p style={{ color: "var(--slate-gray)", fontSize: "0.875rem" }}>Reliable piping solutions for agricultural, industrial, and municipal projects across India.</p>
-                <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)", marginTop: "var(--space-4)", paddingTop: "var(--space-4)", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-                  <div style={{ width: "40px", height: "40px", borderRadius: "50%", backgroundColor: "var(--light-signal-orange)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", fontWeight: "bold", color: "white" }}>GS</div>
-                  <div>
-                    <h5 style={{ margin: 0, color: "var(--canvas-cream)" }}>Gordhan Sharma</h5>
-                    <span style={{ fontSize: "0.75rem", color: "var(--slate-gray)" }}>Managing Partner & CEO</span>
+          <div style={{ maxWidth: "600px", marginBottom: "var(--space-6)" }}>
+            <span className="eyebrow">Leadership</span>
+            <h2>Our Leadership Team</h2>
+            <p>Driving strategic growth, operational excellence, and lasting partnerships across India&apos;s piping and irrigation industry.</p>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-8)" }}>
+            {/* Gordhan Sharma */}
+            <div className="grid-2" style={{ alignItems: "center", gap: "var(--space-6)" }}>
+              <AnimateOnScroll className="reveal reveal-left">
+                <h2>Gordhan Sharma</h2>
+                <h4 style={{ color: "var(--light-signal-orange)", marginBottom: "var(--space-3)", fontWeight: 600 }}>Managing Partner & CEO</h4>
+                <p className="lead" style={{ fontStyle: "italic", color: "var(--ink-black)" }}>
+                  &quot;Gordhan Sharma has been serving as the Managing Partner and CEO of LG Irrigation since 2011.&quot;
+                </p>
+                <p>
+                  He has played a key role in establishing and expanding the company as a trusted manufacturer of high-quality HDPE piping solutions. He provides strategic leadership across business development, manufacturing operations, quality management, and customer relationships.
+                </p>
+                <p>
+                  Under his leadership, LG Irrigation remains committed to delivering reliable products, maintaining high manufacturing standards, and building long-term partnerships with customers. Driven by a vision of innovation, operational excellence, and sustainable growth, he is focused on expanding the company&apos;s presence while upholding the highest standards of quality and business ethics.
+                </p>
+                <div style={{ marginTop: "var(--space-4)", borderLeft: "3px solid var(--light-signal-orange)", paddingLeft: "var(--space-3)", fontStyle: "italic", color: "var(--slate-gray)" }}>
+                  &quot;We believe that quality, integrity, innovation, and customer satisfaction are the foundation of long-term success.&quot;
+                </div>
+              </AnimateOnScroll>
+              <AnimateOnScroll className="reveal reveal-right" style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{ position: "relative", width: "100%", maxWidth: "400px", padding: "var(--space-4)", backgroundColor: "var(--ink-black)", borderRadius: "var(--radius-card)", color: "var(--canvas-cream)", boxShadow: "var(--shadow-level-3)" }}>
+                  <span style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--slate-gray)" }}>ESTABLISHED 2011</span>
+                  <h3 style={{ color: "var(--canvas-cream)", marginTop: "var(--space-2)", marginBottom: "var(--space-4)" }}>L G Irrigation</h3>
+                  <p style={{ color: "var(--slate-gray)", fontSize: "0.875rem" }}>Reliable piping solutions for agricultural, industrial, and municipal projects across India.</p>
+                  <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)", marginTop: "var(--space-4)", paddingTop: "var(--space-4)", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                    <div style={{ width: "40px", height: "40px", borderRadius: "50%", backgroundColor: "var(--light-signal-orange)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", fontWeight: "bold", color: "white" }}>GS</div>
+                    <div>
+                      <h5 style={{ margin: 0, color: "var(--canvas-cream)" }}>Gordhan Sharma</h5>
+                      <span style={{ fontSize: "0.75rem", color: "var(--slate-gray)" }}>Managing Partner & CEO</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </AnimateOnScroll>
+              </AnimateOnScroll>
+            </div>
+
+            {/* Kanha Sharma */}
+            <div className="grid-2" style={{ alignItems: "center", gap: "var(--space-6)", paddingTop: "var(--space-6)", borderTop: "1px solid var(--border-color)" }}>
+              <AnimateOnScroll className="reveal reveal-left">
+                <h2>Kanha Sharma</h2>
+                <h4 style={{ color: "var(--light-signal-orange)", marginBottom: "var(--space-3)", fontWeight: 600 }}>Head of Business Development</h4>
+                <p className="lead" style={{ fontStyle: "italic", color: "var(--ink-black)" }}>
+                  &quot;Kanha Sharma leads the business development initiatives at LG Irrigation, focusing on expanding market reach, building strong partnerships with contractors, and identifying new growth opportunities.&quot;
+                </p>
+                <p>
+                  He is committed to driving the company’s growth by delivering reliable HDPE piping solutions and creating lasting value for clients across India.
+                </p>
+                <div style={{ marginTop: "var(--space-4)", borderLeft: "3px solid var(--light-signal-orange)", paddingLeft: "var(--space-3)", fontStyle: "italic", color: "var(--slate-gray)" }}>
+                  &quot;Driving growth through reliable HDPE piping solutions and strong contractor partnerships across India.&quot;
+                </div>
+              </AnimateOnScroll>
+              <AnimateOnScroll className="reveal reveal-right" style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{ position: "relative", width: "100%", maxWidth: "400px", padding: "var(--space-4)", backgroundColor: "var(--ink-black)", borderRadius: "var(--radius-card)", color: "var(--canvas-cream)", boxShadow: "var(--shadow-level-3)" }}>
+                  <span style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--light-signal-orange)" }}>BUSINESS DEVELOPMENT</span>
+                  <h3 style={{ color: "var(--canvas-cream)", marginTop: "var(--space-2)", marginBottom: "var(--space-4)" }}>Growth & Market Expansion</h3>
+                  <p style={{ color: "var(--slate-gray)", fontSize: "0.875rem" }}>Building strategic contractor partnerships and delivering value for clients across India.</p>
+                  <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)", marginTop: "var(--space-4)", paddingTop: "var(--space-4)", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                    <div style={{ width: "40px", height: "40px", borderRadius: "50%", backgroundColor: "var(--light-signal-orange)", display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center", fontWeight: "bold", color: "white" }}>KS</div>
+                    <div>
+                      <h5 style={{ margin: 0, color: "var(--canvas-cream)" }}>Kanha Sharma</h5>
+                      <span style={{ fontSize: "0.75rem", color: "var(--slate-gray)" }}>Head of Business Development</span>
+                    </div>
+                  </div>
+                </div>
+              </AnimateOnScroll>
+            </div>
           </div>
         </div>
       </section>
