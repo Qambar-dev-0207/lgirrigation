@@ -191,7 +191,7 @@ export default function Home() {
           <div className="hero-content-overlay">
             <div className="hero-eyebrow">
               <span className="hero-eyebrow-dot" />
-              Since 2010 &nbsp;·&nbsp; Rajasthan, India
+              Since 2011 &nbsp;·&nbsp; Rajasthan, India
             </div>
 
             <h1 className="hero-headline">
@@ -285,7 +285,7 @@ export default function Home() {
 
             <AnimateOnScroll className="reveal reveal-left">
               <span className="eyebrow">Company Profile</span>
-              <h2>Serving farmers &amp; municipalities since 2010.</h2>
+              <h2>Serving farmers &amp; municipalities since 2011.</h2>
               <p>L G Irrigation is an ISO 9001:2015 and ISI certified company. LGI has the vision to provide better quality products to farmers, helping them utilize natural water resources to the fullest.</p>
               <p>We are completely devoted to customer satisfaction. LGI is an approved vendor in major Govt. departments including Maharashtra Jeevan Pradhikaran (MJP), JJM Rajasthan, UPJN, and various discoms of power corporation.</p>
               <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "var(--space-4)" }}>
