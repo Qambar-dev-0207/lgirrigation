@@ -8,6 +8,11 @@ import VisitorTracker from "@/components/VisitorTracker";
 export const metadata = {
   title: "L G Irrigation | Premium HDPE & Sewerage Piping Systems",
   description: "L G Irrigation is an ISO 9001:2015 & ISI certified manufacturer of HDPE pipes, coils, sewerage pipes, and sprinkler irrigation systems. Serving infrastructure and agricultural sectors across India.",
+  icons: {
+    icon: "/assets/lglogo.png",
+    shortcut: "/assets/lglogo.png",
+    apple: "/assets/lglogo.png",
+  },
 };
 
 export default function RootLayout({ children }) {
