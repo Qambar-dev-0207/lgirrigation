@@ -122,7 +122,7 @@ export default function Footer() {
 
             {/* Social Icons */}
             <div className="footer-socials">
-              <a href="#" className="footer-social-icon" aria-label="LinkedIn Profile">
+              <a href="https://www.linkedin.com/posts/lg-irrigatio9_lgirrigation-hdpepipes-irrigation-activity-7493360698597675008-xZCp?utm_source=share&utm_medium=member_android&rcm=ACoAAGrZCOQB4pfga5t2YKl4wmc8w3i6rVR8gPE" className="footer-social-icon" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer">
                 <LinkedInIcon />
               </a>
               <a href="https://wa.me/919828167722" className="footer-social-icon" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
