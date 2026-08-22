@@ -126,13 +126,13 @@ export default function Quality() {
             </div>
 
             <div className="value-card" style={{ textAlign: "center", border: "1.5px solid var(--ink-black)", boxShadow: "3px 3px 0px var(--ink-black)" }}>
-              <div style={{ fontSize: "1.25rem", fontWeight: "700", color: "var(--light-signal-orange)", marginBottom: "8px" }}>IS 4984 : 1995</div>
+              <div style={{ fontSize: "1.25rem", fontWeight: "700", color: "var(--light-signal-orange)", marginBottom: "8px" }}>IS 4984 : 2016</div>
               <h3 style={{ fontSize: "1.125rem", marginBottom: "4px" }}>HDPE Pipes</h3>
               <span style={{ fontSize: "0.8125rem", color: "var(--slate-gray)", fontWeight: "700", textTransform: "uppercase" }}>Potable Water Lines</span>
             </div>
 
             <div className="value-card" style={{ textAlign: "center", border: "1.5px solid var(--ink-black)", boxShadow: "3px 3px 0px var(--ink-black)" }}>
-              <div style={{ fontSize: "1.25rem", fontWeight: "700", color: "var(--light-signal-orange)", marginBottom: "8px" }}>IS 14333 : 1996</div>
+              <div style={{ fontSize: "1.25rem", fontWeight: "700", color: "var(--light-signal-orange)", marginBottom: "8px" }}>IS 14333 : 2022</div>
               <h3 style={{ fontSize: "1.125rem", marginBottom: "4px" }}>Sewerage Pipes</h3>
               <span style={{ fontSize: "0.8125rem", color: "var(--slate-gray)", fontWeight: "700", textTransform: "uppercase" }}>Wastewater Lines</span>
             </div>

@@ -35,9 +35,19 @@ async function seedProductsIfNeeded(db) {
       
       await db.collection("products").insertMany(seededProducts);
       console.log("Seeded default products to MongoDB");
+    } else {
+      // Update any outdated standards in existing MongoDB collection
+      await db.collection("products").updateMany(
+        { standard: "IS 4984 : 1995" },
+        { $set: { standard: "IS 4984 : 2016" } }
+      );
+      await db.collection("products").updateMany(
+        { standard: "IS 14333 : 1996" },
+        { $set: { standard: "IS 14333 : 2022" } }
+      );
     }
   } catch (err) {
-    console.error("Failed to seed default products to MongoDB:", err);
+    console.error("Failed to seed/update default products in MongoDB:", err);
   }
 }
 
@@ -52,8 +62,15 @@ export async function GET() {
     
     return NextResponse.json(cleanProducts);
   } catch (error) {
-    console.error("Products GET error:", error);
-    return NextResponse.json({ error: "Failed to fetch products" }, { status: 500 });
+    console.error("Products GET error, falling back to local products.json:", error);
+    try {
+      const localDataPath = path.join(process.cwd(), "src", "data", "products.json");
+      const fileData = await fs.readFile(localDataPath, "utf8");
+      const defaultProducts = JSON.parse(fileData);
+      return NextResponse.json(defaultProducts);
+    } catch (fsErr) {
+      return NextResponse.json({ error: "Failed to fetch products" }, { status: 500 });
+    }
   }
 }
 

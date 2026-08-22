@@ -9,8 +9,8 @@ import ApprovalsGrid from "@/components/ApprovalsGrid";
 
 
 const CERTS = [
-  { label: "IS 4984 : 1995", std: "HDPE Pipes" },
-  { label: "IS 14333 : 1996", std: "Sewerage" },
+  { label: "IS 4984 : 2016", std: "HDPE Pipes" },
+  { label: "IS 14333 : 2022", std: "Sewerage" },
   { label: "IS 14151 PT-2", std: "Sprinkler" },
   { label: "ISO 9001:2015", std: "Quality" },
 ];
@@ -389,7 +389,7 @@ export default function Home() {
                     <Link href="/products#sewerage" className="satellite-cta" aria-label="Sewerage Pipes" />
                   </div>
                   <div className="portrait-info">
-                    <span className="eyebrow">IS 14333 : 1996</span>
+                    <span className="eyebrow">IS 14333 : 2022</span>
                     <h3>Sewerage Pipes</h3>
                     <p style={{ fontSize: "0.9375rem" }}>Systems designed for industrial waste, drainage, and undulated terrains. Watertight butt welding joints.</p>
                   </div>
@@ -405,7 +405,7 @@ export default function Home() {
                     <Link href="/products#hdpe" className="satellite-cta" aria-label="HDPE Pipes" />
                   </div>
                   <div className="portrait-info">
-                    <span className="eyebrow">IS 4984 : 1995</span>
+                    <span className="eyebrow">IS 4984 : 2016</span>
                     <h3>HDPE Pipes &amp; Coils</h3>
                     <p style={{ fontSize: "0.9375rem" }}>Potable water pipes for municipal and industrial supply. High resistance to acids, alkalis, and corrosive effluents.</p>
                   </div>

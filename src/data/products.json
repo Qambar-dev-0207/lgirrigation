@@ -2,7 +2,7 @@
   {
     "id": "hdpe",
     "title": "HDPE Pipes & Coils",
-    "standard": "IS 4984 : 1995",
+    "standard": "IS 4984 : 2016",
     "eyebrow": "POTABLE WATER & INDUSTRIAL",
     "shortDescription": "Premium high-density polyethylene pipelines for reliable, leak-free municipal water supply casing.",
     "longDescription": "Our premium high-density polyethylene line provides highly reliable, leak-free performance for municipal water supply lines, submersibles in bore wells, and slurry transport systems.",
@@ -31,7 +31,7 @@
       ],
       "rows": [
         [
-          "IS 4984 : 1995",
+          "IS 4984 : 2016",
           "32 mm to 710 mm",
           "PN 2.5, PN 4.0, PN 6.0, PN 8.0, PN 10.0",
           "Coils (32mm to 110mm) / Straight Bars (up to 710mm)",
@@ -76,7 +76,7 @@
   {
     "id": "sewerage",
     "title": "Sewerage Pipes",
-    "standard": "IS 14333 : 1996",
+    "standard": "IS 14333 : 2022",
     "eyebrow": "SEWERAGE PROJECTS",
     "shortDescription": "Designed specifically for municipal and industrial wastewater transportation, drainage, and slurry handling.",
     "longDescription": "Designed specifically for municipal and industrial wastewater transportation, drainage, and slurry handling. Fused with leak-proof jointing mechanisms to protect water resources in arid regions.",
@@ -105,7 +105,7 @@
       ],
       "rows": [
         [
-          "IS 14333 : 1996",
+          "IS 14333 : 2022",
           "63 mm to 710 mm",
           "PN 2.5, PN 4.0, PN 6.0, PN 8.0, PN 10.0",
           "6 Meters (straight) or custom lengths",

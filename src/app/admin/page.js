@@ -899,7 +899,7 @@ export default function AdminPortal() {
                         type="text"
                         value={productForm.standard}
                         onChange={(e) => setProductForm((p) => ({ ...p, standard: e.target.value }))}
-                        placeholder="e.g., IS 4984 : 1995"
+                        placeholder="e.g., IS 4984 : 2016"
                         style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)" }}
                       />
                     </div>
@@ -1500,7 +1500,7 @@ export default function AdminPortal() {
                     type="text"
                     value={editingProductForm.standard}
                     onChange={(e) => setEditingProductForm((p) => ({ ...p, standard: e.target.value }))}
-                    placeholder="e.g., IS 4984 : 1995"
+                    placeholder="e.g., IS 4984 : 2016"
                     style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(20, 20, 19, 0.15)" }}
                   />
                 </div>
