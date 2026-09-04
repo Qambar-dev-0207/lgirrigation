@@ -104,6 +104,9 @@ export default function Footer() {
             <p style={{ color: "var(--slate-gray)", marginBottom: 0, fontSize: "0.8125rem" }}>
               &copy; 2026 L G Irrigation. All rights reserved. Manufactured in India.
             </p>
+            <p style={{ color: "var(--slate-gray)", marginBottom: 0, fontSize: "0.75rem" }}>
+              Made by <span style={{ color: "var(--slate-gray)", fontWeight: 500 }}>Codnexa</span>
+            </p>
 
             <div className="footer-bottom-links">
               <a href="#" style={{ marginRight: "16px" }}>Privacy Policy</a>
