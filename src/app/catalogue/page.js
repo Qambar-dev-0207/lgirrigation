@@ -105,7 +105,7 @@ export default function CataloguePage() {
             </div>
 
             {/* Action Buttons */}
-            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "var(--space-4)" }}>
+            <div className="catalogue-page-hero-btns" style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginTop: "var(--space-4)" }}>
               <a
                 href="/api/download-catalogue"
                 download="LG_Irrigation_Catalogue.pdf"
@@ -239,7 +239,7 @@ export default function CataloguePage() {
                   Our technical engineers and SEZ production managers assist contractors, Jal Nigam boards, and infrastructure planners with custom wall thicknesses, pressure sizing, and fast logistics.
                 </p>
               </div>
-              <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+              <div className="catalogue-page-bottom-btns" style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
                 <a
                   href="/api/download-catalogue"
                   download="LG_Irrigation_Catalogue.pdf"

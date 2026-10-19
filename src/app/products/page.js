@@ -41,7 +41,7 @@ export default function Products() {
               <h1>Manufactured to endure. Approved to perform.</h1>
               <p className="lead">L G Irrigation products are extruded using premium grade polymers under controlled conditions to comply with Indian Standards. Discover technical details, applications, and size dimensions for each category below.</p>
             </div>
-            <div style={{ paddingBottom: "12px", display: "flex", gap: "12px", flexWrap: "wrap" }}>
+            <div className="products-header-cta-row" style={{ paddingBottom: "12px", display: "flex", gap: "12px", flexWrap: "wrap" }}>
               <a
                 href="/api/download-catalogue"
                 download="LG_Irrigation_Catalogue.pdf"
@@ -145,7 +145,7 @@ export default function Products() {
                   Download the full 13-page L G Irrigation catalogue with wall thickness specs, standard dimension ratios (SDR), fusion jointing guides, and test laboratory credentials.
                 </p>
               </div>
-              <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+              <div className="products-banner-btn-row" style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
                 <a
                   href="/api/download-catalogue"
                   download="LG_Irrigation_Catalogue.pdf"

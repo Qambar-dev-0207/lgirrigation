@@ -258,7 +258,7 @@ export default function Home() {
               <p className="lead">
                 Setting the standard in high-density polyethylene pipeline networks. We engineer advanced fluid systems designed to endure harsh environmental demands and secure zero-leak water supply.
               </p>
-              <div style={{ display: "flex", gap: "14px", marginTop: "var(--space-4)", flexWrap: "wrap" }}>
+              <div className="hero-minimalist-cta-row" style={{ display: "flex", gap: "14px", marginTop: "var(--space-4)", flexWrap: "wrap" }}>
                 <Link href="/products" className="btn btn-primary">
                   View Product Specs
                 </Link>
@@ -321,7 +321,7 @@ export default function Home() {
             </AnimateOnScroll>
 
             <AnimateOnScroll className="reveal reveal-right" style={{ display: "flex", justifyContent: "center", position: "relative" }}>
-              <div className="portrait-circle-wrapper" style={{ width: "340px", height: "340px", marginBottom: 0 }}>
+              <div className="portrait-circle-wrapper portrait-circle-responsive">
                 <div className="portrait-circle">
                   <img src="/assets/factory_exterior.png" alt="L G Irrigation Factory" loading="lazy" />
                 </div>
@@ -492,7 +492,7 @@ export default function Home() {
       {/* ============================================================
           OFFICIAL PRODUCT CATALOGUE SHOWCASE
           ============================================================ */}
-      <section style={{ padding: "var(--space-12) 0", position: "relative" }}>
+      <section style={{ padding: "var(--space-12) 0", position: "relative", overflow: "hidden" }}>
         <div className="ghost-watermark watermark-left" style={{ top: "20%" }}>CATALOGUE</div>
         <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <AnimateOnScroll className="reveal">
@@ -513,12 +513,11 @@ export default function Home() {
                     <span className="catalogue-chip">✓ Govt Approved (MJP, JJM, UPJN)</span>
                   </div>
 
-                  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "var(--space-6)" }}>
+                  <div className="catalogue-actions-row">
                     <a
                       href="/api/download-catalogue"
                       download="LG_Irrigation_Catalogue.pdf"
-                      className="btn btn-primary"
-                      style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+                      className="btn btn-primary catalogue-download-btn"
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -529,8 +528,7 @@ export default function Home() {
                     </a>
                     <Link
                       href="/catalogue"
-                      className="btn btn-secondary"
-                      style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+                      className="btn btn-secondary catalogue-view-btn"
                     >
                       View Catalogue Online →
                     </Link>
