@@ -90,11 +90,10 @@ export default function Header() {
         {/* Actions */}
         <div className="nav-actions">
           <a
-            href="/LG_Irrigation_Catalogue.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/api/download-catalogue"
+            download="LG_Irrigation_Catalogue.pdf"
             className="nav-catalogue-btn"
-            title="Download / View LG Irrigation Catalogue (PDF)"
+            title="Download LG Irrigation Catalogue (PDF)"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -149,9 +148,8 @@ export default function Header() {
             </Link>
           ))}
           <a
-            href="/LG_Irrigation_Catalogue.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/api/download-catalogue"
+            download="LG_Irrigation_Catalogue.pdf"
             className="mobile-nav-link"
             onClick={closeMobileMenu}
             style={{

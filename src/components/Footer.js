@@ -54,9 +54,7 @@ export default function Footer() {
                 <li><Link href="/contact#fast-fusion">Fast Fusion Machinery</Link></li>
                 <li>
                   <a
-                    href="/LG_Irrigation_Catalogue.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/api/download-catalogue"
                     download="LG_Irrigation_Catalogue.pdf"
                     style={{
                       display: "inline-flex",
@@ -128,7 +126,7 @@ export default function Footer() {
             </p>
 
             <div className="footer-bottom-links">
-              <a href="/LG_Irrigation_Catalogue.pdf" target="_blank" rel="noopener noreferrer" download="LG_Irrigation_Catalogue.pdf" style={{ marginRight: "16px" }}>Catalogue (PDF)</a>
+              <a href="/api/download-catalogue" download="LG_Irrigation_Catalogue.pdf" style={{ marginRight: "16px" }}>Download Catalogue</a>
               <a href="#" style={{ marginRight: "16px" }}>Privacy Policy</a>
               <a href="#" style={{ marginRight: "16px" }}>Terms &amp; Conditions</a>
               <Link href="/admin">Admin Portal</Link>

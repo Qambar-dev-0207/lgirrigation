@@ -107,7 +107,7 @@ export default function CataloguePage() {
             {/* Action Buttons */}
             <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "var(--space-4)" }}>
               <a
-                href="/LG_Irrigation_Catalogue.pdf"
+                href="/api/download-catalogue"
                 download="LG_Irrigation_Catalogue.pdf"
                 className="btn btn-primary"
                 style={{ display: "inline-flex", alignItems: "center", gap: "10px", padding: "12px 28px" }}
@@ -169,7 +169,7 @@ export default function CataloguePage() {
                   Full Screen ↗
                 </a>
                 <a
-                  href="/LG_Irrigation_Catalogue.pdf"
+                  href="/api/download-catalogue"
                   download="LG_Irrigation_Catalogue.pdf"
                   className="btn btn-primary"
                   style={{ padding: "6px 14px", fontSize: "0.8125rem", display: "inline-flex", alignItems: "center", gap: "6px" }}
@@ -241,7 +241,7 @@ export default function CataloguePage() {
               </div>
               <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
                 <a
-                  href="/LG_Irrigation_Catalogue.pdf"
+                  href="/api/download-catalogue"
                   download="LG_Irrigation_Catalogue.pdf"
                   className="btn btn-orange"
                   style={{ display: "inline-flex", alignItems: "center", gap: "8px", textDecoration: "none" }}

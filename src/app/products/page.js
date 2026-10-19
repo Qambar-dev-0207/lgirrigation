@@ -43,9 +43,7 @@ export default function Products() {
             </div>
             <div style={{ paddingBottom: "12px", display: "flex", gap: "12px", flexWrap: "wrap" }}>
               <a
-                href="/LG_Irrigation_Catalogue.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/api/download-catalogue"
                 download="LG_Irrigation_Catalogue.pdf"
                 className="btn btn-primary"
                 style={{ display: "inline-flex", alignItems: "center", gap: "8px", textDecoration: "none" }}
@@ -149,9 +147,7 @@ export default function Products() {
               </div>
               <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
                 <a
-                  href="/LG_Irrigation_Catalogue.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/api/download-catalogue"
                   download="LG_Irrigation_Catalogue.pdf"
                   className="btn btn-primary"
                   style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}

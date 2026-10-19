@@ -212,9 +212,8 @@ export default function Home() {
                 </svg>
               </Link>
               <a
-                href="/LG_Irrigation_Catalogue.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/api/download-catalogue"
+                download="LG_Irrigation_Catalogue.pdf"
                 className="btn-hero-secondary"
                 style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
               >
@@ -264,9 +263,8 @@ export default function Home() {
                   View Product Specs
                 </Link>
                 <a
-                  href="/LG_Irrigation_Catalogue.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/api/download-catalogue"
+                  download="LG_Irrigation_Catalogue.pdf"
                   className="btn btn-secondary"
                   style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
                 >
@@ -517,9 +515,7 @@ export default function Home() {
 
                   <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "var(--space-6)" }}>
                     <a
-                      href="/LG_Irrigation_Catalogue.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="/api/download-catalogue"
                       download="LG_Irrigation_Catalogue.pdf"
                       className="btn btn-primary"
                       style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
@@ -557,13 +553,12 @@ export default function Home() {
                     <li style={{ marginBottom: "6px" }}>• In-House QA &amp; NABL Hydrostatic Pressure Testing</li>
                   </ul>
                   <a
-                    href="/LG_Irrigation_Catalogue.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/api/download-catalogue"
+                    download="LG_Irrigation_Catalogue.pdf"
                     className="btn btn-orange"
                     style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "8px", textDecoration: "none" }}
                   >
-                    Open Official PDF
+                    Download Official PDF
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
