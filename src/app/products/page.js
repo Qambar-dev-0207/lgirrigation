@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -34,10 +35,36 @@ export default function Products() {
       {/* Top Product Headline Section */}
       <section style={{ paddingBottom: 0 }}>
         <div className="container">
-          <div style={{ maxWidth: "800px" }}>
-            <span className="eyebrow">THE PRODUCT RANGE</span>
-            <h1>Manufactured to endure. Approved to perform.</h1>
-            <p className="lead">L G Irrigation products are extruded using premium grade polymers under controlled conditions to comply with Indian Standards. Discover technical details, applications, and size dimensions for each category below.</p>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "24px" }}>
+            <div style={{ maxWidth: "720px" }}>
+              <span className="eyebrow">THE PRODUCT RANGE</span>
+              <h1>Manufactured to endure. Approved to perform.</h1>
+              <p className="lead">L G Irrigation products are extruded using premium grade polymers under controlled conditions to comply with Indian Standards. Discover technical details, applications, and size dimensions for each category below.</p>
+            </div>
+            <div style={{ paddingBottom: "12px", display: "flex", gap: "12px", flexWrap: "wrap" }}>
+              <a
+                href="/LG_Irrigation_Catalogue.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                download="LG_Irrigation_Catalogue.pdf"
+                className="btn btn-primary"
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px", textDecoration: "none" }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Download Full Catalogue (PDF)
+              </a>
+              <Link
+                href="/catalogue"
+                className="btn btn-secondary"
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+              >
+                View Online →
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -105,6 +132,43 @@ export default function Products() {
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Product Catalogue Download Banner */}
+      <section style={{ paddingTop: 0, paddingBottom: "var(--space-12)" }}>
+        <div className="container">
+          <div className="catalogue-banner-card" style={{ padding: "var(--space-6)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
+              <div style={{ maxWidth: "680px" }}>
+                <span className="eyebrow">COMPLETE TECHNICAL DOCUMENTATION</span>
+                <h3 style={{ fontSize: "1.5rem", marginBottom: "8px" }}>Looking for detailed dimension charts &amp; pressure tables?</h3>
+                <p style={{ color: "var(--slate-gray)", marginBottom: 0, fontSize: "0.9375rem" }}>
+                  Download the full 13-page L G Irrigation catalogue with wall thickness specs, standard dimension ratios (SDR), fusion jointing guides, and test laboratory credentials.
+                </p>
+              </div>
+              <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                <a
+                  href="/LG_Irrigation_Catalogue.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download="LG_Irrigation_Catalogue.pdf"
+                  className="btn btn-primary"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  Download PDF Catalogue (2.2 MB)
+                </a>
+                <Link href="/catalogue" className="btn btn-secondary">
+                  View Online Catalogue
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

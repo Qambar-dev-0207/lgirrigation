@@ -211,6 +211,20 @@ export default function Home() {
                   <polyline points="12 5 19 12 12 19"/>
                 </svg>
               </Link>
+              <a
+                href="/LG_Irrigation_Catalogue.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-hero-secondary"
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Download Catalogue
+              </a>
               <Link href="/contact" className="btn-hero-secondary">
                 Request a Quote
               </Link>
@@ -245,10 +259,24 @@ export default function Home() {
               <p className="lead">
                 Setting the standard in high-density polyethylene pipeline networks. We engineer advanced fluid systems designed to endure harsh environmental demands and secure zero-leak water supply.
               </p>
-              <div style={{ display: "flex", gap: "16px", marginTop: "var(--space-4)" }}>
+              <div style={{ display: "flex", gap: "14px", marginTop: "var(--space-4)", flexWrap: "wrap" }}>
                 <Link href="/products" className="btn btn-primary">
                   View Product Specs
                 </Link>
+                <a
+                  href="/LG_Irrigation_Catalogue.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  Catalogue (PDF)
+                </a>
                 <Link href="/quality" className="btn btn-secondary">
                   Testing Procedures
                 </Link>
@@ -460,6 +488,91 @@ export default function Home() {
           </div>
 
 
+        </div>
+      </section>
+
+      {/* ============================================================
+          OFFICIAL PRODUCT CATALOGUE SHOWCASE
+          ============================================================ */}
+      <section style={{ padding: "var(--space-12) 0", position: "relative" }}>
+        <div className="ghost-watermark watermark-left" style={{ top: "20%" }}>CATALOGUE</div>
+        <div className="container" style={{ position: "relative", zIndex: 2 }}>
+          <AnimateOnScroll className="reveal">
+            <div className="catalogue-banner-card">
+              <div className="catalogue-banner-grid">
+                <div>
+                  <span className="eyebrow">OFFICIAL TECHNICAL DOCUMENTATION</span>
+                  <h2>Comprehensive Product Catalogue &amp; Standards Guide</h2>
+                  <p className="lead" style={{ marginTop: "12px" }}>
+                    Get instant access to our official 13-page technical catalogue — featuring detailed HDPE pipe dimensions (63 mm to 1000 mm), pressure classes (PN 2 to PN 20), IS certifications, jointing protocols, and NABL-supported test parameters.
+                  </p>
+
+                  <div className="catalogue-badge-strip">
+                    <span className="catalogue-chip">✓ IS 4984 : 2016 (HDPE)</span>
+                    <span className="catalogue-chip">✓ IS 14333 (Sewerage)</span>
+                    <span className="catalogue-chip">✓ IS 14151 (Sprinkler)</span>
+                    <span className="catalogue-chip">✓ ISO 9001:2015</span>
+                    <span className="catalogue-chip">✓ Govt Approved (MJP, JJM, UPJN)</span>
+                  </div>
+
+                  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "var(--space-6)" }}>
+                    <a
+                      href="/LG_Irrigation_Catalogue.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download="LG_Irrigation_Catalogue.pdf"
+                      className="btn btn-primary"
+                      style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                      </svg>
+                      Download Catalogue (PDF · 2.2 MB)
+                    </a>
+                    <Link
+                      href="/catalogue"
+                      className="btn btn-secondary"
+                      style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+                    >
+                      View Catalogue Online →
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="catalogue-preview-card">
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: "12px" }}>
+                    <span style={{ fontSize: "0.8125rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--light-signal-orange)", fontWeight: 700 }}>TECHNICAL PUBLICATION</span>
+                    <span style={{ fontSize: "0.75rem", background: "rgba(255,255,255,0.1)", padding: "4px 8px", borderRadius: "4px" }}>13 Pages · 2026</span>
+                  </div>
+                  <h3 style={{ color: "#FFF", fontSize: "1.375rem", marginBottom: "8px" }}>LG Irrigation Catalogue</h3>
+                  <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.875rem", lineHeight: 1.6, marginBottom: "16px" }}>
+                    Engineering Water Flow Since 2011. Fully compliant with Bureau of Indian Standards (BIS) and municipal infrastructure specifications.
+                  </p>
+                  <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px 0", fontSize: "0.8125rem", color: "rgba(255,255,255,0.75)" }}>
+                    <li style={{ marginBottom: "6px" }}>• Complete HDPE Pipe Sizing: 63 mm to 1000 mm</li>
+                    <li style={{ marginBottom: "6px" }}>• IS 14151 Sprinkler Systems &amp; Impact Nozzles</li>
+                    <li style={{ marginBottom: "6px" }}>• Butt Fusion &amp; Electro-Fusion Jointing Procedures</li>
+                    <li style={{ marginBottom: "6px" }}>• In-House QA &amp; NABL Hydrostatic Pressure Testing</li>
+                  </ul>
+                  <a
+                    href="/LG_Irrigation_Catalogue.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-orange"
+                    style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "8px", textDecoration: "none" }}
+                  >
+                    Open Official PDF
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </AnimateOnScroll>
         </div>
       </section>
 

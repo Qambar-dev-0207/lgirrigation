@@ -89,6 +89,20 @@ export default function Header() {
 
         {/* Actions */}
         <div className="nav-actions">
+          <a
+            href="/LG_Irrigation_Catalogue.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-catalogue-btn"
+            title="Download / View LG Irrigation Catalogue (PDF)"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span className="nav-catalogue-text">Catalogue</span>
+          </a>
           <Link
             href="/contact"
             className="btn btn-primary"
@@ -134,6 +148,30 @@ export default function Header() {
               {link.name}
             </Link>
           ))}
+          <a
+            href="/LG_Irrigation_Catalogue.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mobile-nav-link"
+            onClick={closeMobileMenu}
+            style={{
+              opacity: mobileMenuOpen ? 1 : 0,
+              transform: mobileMenuOpen ? "translateY(0)" : "translateY(20px)",
+              transition: `opacity 0.4s ease ${navLinks.length * 0.06}s, transform 0.4s ease ${navLinks.length * 0.06}s`,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              color: "var(--signal-orange)",
+              fontWeight: 700,
+            }}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Download Catalogue (PDF)
+          </a>
         </div>
       </div>
     </header>

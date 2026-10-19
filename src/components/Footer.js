@@ -52,6 +52,24 @@ export default function Footer() {
                 <li><Link href="/products#hdpe">HDPE Pipes &amp; Coils (IS:4984)</Link></li>
                 <li><Link href="/products#sprinkler">Sprinkler Systems (IS:14151)</Link></li>
                 <li><Link href="/contact#fast-fusion">Fast Fusion Machinery</Link></li>
+                <li>
+                  <a
+                    href="/LG_Irrigation_Catalogue.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download="LG_Irrigation_Catalogue.pdf"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      color: "var(--light-signal-orange)",
+                      fontWeight: 600,
+                    }}
+                  >
+                    <span>Download Catalogue (PDF)</span>
+                    <span style={{ fontSize: "0.875rem" }}>↓</span>
+                  </a>
+                </li>
               </ul>
             </div>
 
@@ -59,6 +77,7 @@ export default function Footer() {
               <h5>Company</h5>
               <ul className="footer-links">
                 <li><Link href="/about">Company Profile</Link></li>
+                <li><Link href="/catalogue">Product Catalogue</Link></li>
                 <li><Link href="/about#values">Our Values</Link></li>
                 <li><Link href="/about#team">Management Team</Link></li>
                 <li><Link href="/gallery">Media Gallery</Link></li>
@@ -109,6 +128,7 @@ export default function Footer() {
             </p>
 
             <div className="footer-bottom-links">
+              <a href="/LG_Irrigation_Catalogue.pdf" target="_blank" rel="noopener noreferrer" download="LG_Irrigation_Catalogue.pdf" style={{ marginRight: "16px" }}>Catalogue (PDF)</a>
               <a href="#" style={{ marginRight: "16px" }}>Privacy Policy</a>
               <a href="#" style={{ marginRight: "16px" }}>Terms &amp; Conditions</a>
               <Link href="/admin">Admin Portal</Link>
